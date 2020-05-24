@@ -1,0 +1,126 @@
+/*navbar*/
+
+.navbar {
+	box-shadow: 0 3px 3px rgba(0,0,0,0.4);
+	background-color: #618FCA;
+
+}
+
+
+.bawah-navbar{
+	width: 100%;
+	height: 55px;
+}
+
+
+/*jumbotron*/
+.jumbotron	{
+	background-image: url(assets/img/banner.jpg);
+	background-size: cover;
+	height: 450px;
+	margin-top: 0px;
+	position: relative;
+}
+
+.tulisan-banner{
+	color: white;
+	margin-top: 150px;
+	font-weight: 400;
+	text-shadow: 5px 5px 5px rgba(0,0,0,1);
+	font-size: 20px;
+
+}
+
+/**/
+
+
+/*image*/
+.tugas-image{
+	height: 40px; 
+	width: 40px; 
+}
+
+.komen-image{
+	height: 30px; 
+	width: 30px; 
+}
+
+.posisi-image{
+	margin-left: -20px;
+}
+
+.teks-subtunggal{
+	font-weight: 500;
+	font-size: 17px;
+}
+
+/*tombol*/
+.tombol-masuk{
+	border-radius: 30px;
+	padding: 2px 20px;
+	text-transform: uppercase;
+	font-weight: 470;
+}
+
+
+
+/*utiliti*/
+
+.card-shadow{
+	box-shadow: 0 3px 3px rgba(0,0,0,0.4);
+	border-radius: 6px;
+	background-color: white;
+}
+
+
+.h-divider{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	height: 1px;
+	width: 100%;
+	border-top: 1px solid #d7e1ea;
+}
+
+.v-divider{
+	width: 1px;
+	height: 200px;
+	border-left: 1px solid #d7e1ea;
+}
+
+
+
+/*judul*/
+
+.section-title h2 {
+	margin-bottom: 10px;
+	position: relative;
+	text-transform: uppercase;
+	margin-top: 40px;
+}
+
+.section-title .title-line {
+	color: #17a2b8;
+	position: relative;
+}
+
+.section-title .title-line::after {
+	background-color: #333;
+	content: "";
+	height: 2px;
+	left: -60px;
+	position: absolute;
+	top: 10px;
+	width: 50px;
+}
+
+.section-title .title-line::before {
+	background-color: #333;
+	content: "";
+	height: 2px;
+	position: absolute;
+	right: -60px;
+	top: 10px;
+	width: 50px;
+}
+
+
