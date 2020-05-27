@@ -32,7 +32,7 @@
           <div class="navbar-nav ml-auto">
             <a href="" class="text-white nav-item nav-link">Tutorial Santri</a>
             <a href="" class=" text-white nav-item nav-link mr-3">Turorial Penguji</a>
-            <a href="<?php echo base_url('home/login');?>"  class="btn btn-light tombol-masuk mt-2" type="button" data-toggle="modal" data-target="#exampleModal">Masuk</a>
+            <a href="<?php echo site_url('home/login');?>"  class="btn btn-light tombol-masuk mt-2">Masuk</a>
           </div>
         </div>
       </div>

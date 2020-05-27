@@ -29,7 +29,8 @@
                 <div class="col-10">
                     <div class="form-group">
                       <label for="exampleFormControlFile1">Pilih Audio</label>
-                      <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                      <!-- <input type="file" class="form-control-file" id="exampleFormControlFile1"> -->
+                      <input type="file" class="form-control" id="" name="" accept="audio/mp3, audio/*" required>
                     </div>
                 </div>
                 <div class="col-2">

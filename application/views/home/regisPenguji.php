@@ -10,7 +10,7 @@
                 <form>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Nama Lengkap</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nama Lengkap">
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nama Lengkap">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Alamat email</label>
