@@ -29,8 +29,11 @@ class Penguji extends CI_Controller {
 	}
 
 	public function profilPenguji(){
+		$id_penguji 		= $this->session->userdata('id_penguji');
+		$data['penguji'] = $this->m_penguji->getPenguji($id_penguji)->result();
+		
 		$this->load->view('templates/headerPenguji');
-		$this->load->view('penguji/dataPenguji');
+		$this->load->view('penguji/dataPenguji',$data);
 		$this->load->view('penguji/daftarSantri');
 		$this->load->view('templates/footer');
 
@@ -42,12 +45,47 @@ class Penguji extends CI_Controller {
 		$this->load->view('templates/footer');
 
 	}
-	public function editDataPenguji(){
+	public function editDataPenguji($id_penguji){
+		$data['penguji'] = $this->m_penguji->getPenguji($id_penguji)->result();
+
 		$this->load->view('templates/headerPenguji');
-		$this->load->view('penguji/editDataPenguji');
+		$this->load->view('penguji/editDataPenguji',$data);
 		$this->load->view('templates/footer');
 
 	}
+
+	function prosesEditPenguji(){
+		$id = $this->input->post('id_penguji');
+
+        $foto   = $_FILES['foto'];
+        if($foto=''){}else{
+            $config['upload_path']      = './assets/uploads/penguji/avatar/';
+            $config['allowed_types']    = 'jpg|jpeg|gif|png';
+            $config['max_size']         = 4096;
+
+            $this->load->library('upload');
+            $this->upload->initialize($config);
+
+            if(!$this->upload->do_upload('foto')){
+				$foto = $this->input->post('foto_cadangan');
+            }else{
+                $foto = $this->upload->data('file_name');
+            }
+        }
+
+		$data = array(
+			'NAMA_PENGUJI'	    	=> $this->input->post('nama'),
+			'JK_PENGUJI'			=> $this->input->post('jenis_kelamin'),
+			'TINGKAT_MENGUJI'		=> $this->input->post('tingkat_menguji'),
+			'ALAMAT_PENGUJI'	    => $this->input->post('alamat'),
+			'TELEPON_PENGUJI'	    => $this->input->post('nomor_telepon'),
+            'FOTO_PENGUJI'          => $foto,
+		);
+
+        $this->m_penguji->updatePenguji($data, $id);
+        redirect('penguji/index');
+	}
+	
 		public function profilSantri(){
 		$this->load->view('templates/headerPenguji');
 		$this->load->view('santri/dataSantri_penguji');

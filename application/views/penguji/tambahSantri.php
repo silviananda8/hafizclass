@@ -22,7 +22,7 @@
                 <form action="<?php echo site_url('penguji/regisSantri');?>" method='post'>
                   <div class="form-group">
                     <label for="nama">Nama Lengkap</label>
-                    <input type="text" class="form-control" id="nama" name="nama" aria-describedby="emailHelp" placeholder="Nama Lengkap"  required>
+                    <input type="text" class="form-control" id="nama" name="nama" aria-describedby="emailHelp" placeholder="Nama Lengkap" maxlength="50" required>
                   </div>
                   <div class="form-group">
                     <label for="jenis_kelamin">Jenis Kelamin</label>
@@ -40,11 +40,11 @@
                   </div>
                   <div class="form-group">
                     <label for="email">Alamat email</label>
-                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="nama@gmail.com"  required>
+                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="nama@gmail.com" maxlength="50" required>
                   </div>
                   <div class="form-group">
                     <label for="password">Kata Sandi</label>
-                    <input type="password" class="form-control mb-4" id="password" name="password" required>
+                    <input type="password" class="form-control mb-4" id="password" name="password" maxlength="25" required>
                   </div>
                   <button type="submit" class="btn btn-info mb-4 btn-block mt-4">Submit</button>
                 </form>
