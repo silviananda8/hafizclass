@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2020 at 09:34 PM
+-- Generation Time: May 28, 2020 at 12:34 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.28
 
@@ -60,8 +60,9 @@ CREATE TABLE `penguji` (
   `PASSWORD_PENGUJI` varchar(25) DEFAULT NULL,
   `NAMA_PENGUJI` varchar(50) DEFAULT NULL,
   `JK_PENGUJI` varchar(20) DEFAULT NULL,
+  `ALAMAT_PENGUJI` text NOT NULL,
   `TELEPON_PENGUJI` int(11) DEFAULT NULL,
-  `FOTO_PENGUJI` varchar(50) DEFAULT NULL,
+  `FOTO_PENGUJI` text,
   `TINGKAT_MENGUJI` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -69,9 +70,9 @@ CREATE TABLE `penguji` (
 -- Dumping data for table `penguji`
 --
 
-INSERT INTO `penguji` (`ID_PENGUJI`, `EMAIL_PENGUJI`, `PASSWORD_PENGUJI`, `NAMA_PENGUJI`, `JK_PENGUJI`, `TELEPON_PENGUJI`, `FOTO_PENGUJI`, `TINGKAT_MENGUJI`) VALUES
-(1, 'penguji@gmail.com', '54321', 'akbar', 'lak laki', 23123123, 'bbb', NULL),
-(2, 'aaa@gmail.com', 'aaa', 'aaa', NULL, NULL, NULL, NULL);
+INSERT INTO `penguji` (`ID_PENGUJI`, `EMAIL_PENGUJI`, `PASSWORD_PENGUJI`, `NAMA_PENGUJI`, `JK_PENGUJI`, `ALAMAT_PENGUJI`, `TELEPON_PENGUJI`, `FOTO_PENGUJI`, `TINGKAT_MENGUJI`) VALUES
+(1, 'penguji@gmail.com', '54321', 'Akbar A', 'Laki-laki', 'Jl. Kedurus, Karang Pilang', 2147483647, 'masjid-pogung-dalangan-GClYQv8I3So-unsplash.jpg', 'Hafalan Jus 29 dan 30'),
+(2, 'aaa@gmail.com', 'aaa', 'aaa', NULL, '', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -101,18 +102,19 @@ CREATE TABLE `santri` (
   `PASSWORD_SANTRI` varchar(25) DEFAULT NULL,
   `NAMA_SANTRI` varchar(50) DEFAULT NULL,
   `JK_SANTRI` varchar(20) DEFAULT NULL,
+  `ALAMAT_SANTRI` text NOT NULL,
   `TINGKAT_PENDIDIKAN` varchar(10) NOT NULL,
-  `TELEPON_SANTRI` int(11) DEFAULT NULL,
-  `FOTO_SANTRI` varchar(50) DEFAULT NULL
+  `TELEPON_SANTRI` int(15) DEFAULT NULL,
+  `FOTO_SANTRI` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `santri`
 --
 
-INSERT INTO `santri` (`ID_SANTRI`, `ID_PENGUJI`, `EMAIL_SANTRI`, `PASSWORD_SANTRI`, `NAMA_SANTRI`, `JK_SANTRI`, `TINGKAT_PENDIDIKAN`, `TELEPON_SANTRI`, `FOTO_SANTRI`) VALUES
-(1, 1, 'santri@gmail.com', '12345', 'ikhwan', 'laki-laki', 'SMA', 12321321, 'aaa'),
-(2, 1, 'asha@gmail.com', 'asha', 'asha', 'Perempuan', 'SD', NULL, NULL);
+INSERT INTO `santri` (`ID_SANTRI`, `ID_PENGUJI`, `EMAIL_SANTRI`, `PASSWORD_SANTRI`, `NAMA_SANTRI`, `JK_SANTRI`, `ALAMAT_SANTRI`, `TINGKAT_PENDIDIKAN`, `TELEPON_SANTRI`, `FOTO_SANTRI`) VALUES
+(1, 1, 'santri@gmail.com', '12345', 'Ikhwan Nabila A', 'Laki-laki', 'Jl. Kamboja', 'SMP', 87152375, 'ngaji.jpg'),
+(2, 1, 'asha@gmail.com', 'asha', 'asha', 'Perempuan', 'Jl. Anggrek', 'SD', NULL, NULL);
 
 -- --------------------------------------------------------
 
