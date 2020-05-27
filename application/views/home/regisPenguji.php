@@ -7,18 +7,31 @@
               <div class="card-body">
                 <h6 class="text-center mb-4">Silahkan Mendaftar Sebagai Penguji<br><small>Lengkapi Biodata Setelah terdaftar sebagai penguji</small></h6>
 
-                <form>
+                <!-- alert registrasi berhasil -->
+                <?php if($this->session->flashdata()== true):?>
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <?= $this->session->flashdata('msg'); ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <?php else:?>
+                  <?php endif;?>
+                  <!-- end alert register -->
+
+
+                <form action="<?php echo site_url('penguji/regisPenguji');?>" method='post'>
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Nama Lengkap</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nama Lengkap">
+                    <label for="nama">Nama Lengkap</label>
+                    <input type="text" class="form-control" id="nama" name="nama" aria-describedby="emailHelp" placeholder="Nama Lengkap" required>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Alamat email</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="nama@gmail.com">
+                    <label for="email">Alamat email</label>
+                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="nama@gmail.com" required>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Kata Sandi</label>
-                    <input type="password" class="form-control mb-4" id="exampleInputPassword1">
+                    <label for="password">Kata Sandi</label>
+                    <input type="password" class="form-control mb-4" id="password" name="password" required>
                   </div>
                   <button type="submit" class="btn btn-info mb-4 btn-block mt-4">Submit</button>
                 </form>

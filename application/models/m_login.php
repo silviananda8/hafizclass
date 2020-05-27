@@ -5,8 +5,8 @@ class m_login extends CI_Model{
 		$query=$this->db->query("SELECT * FROM santri WHERE EMAIL_SANTRI='$email' AND PASSWORD_SANTRI='$password'");
 		return $query;
 	}
-	function auth_ustadz($email,$password){
-		$query=$this->db->query("SELECT * FROM ustadz WHERE EMAIL_USTADZ='$email' AND PASSWORD_USTADZ='$password'");
+	function auth_penguji($email,$password){
+		$query=$this->db->query("SELECT * FROM penguji WHERE EMAIL_PENGUJI='$email' AND PASSWORD_PENGUJI='$password'");
 		return $query;
 	}
 

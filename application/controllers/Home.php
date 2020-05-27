@@ -5,7 +5,15 @@ class Home extends CI_Controller {
 
 
 	public function index(){
-		$this->load->view('templates/header');
+		if($this->session->userdata('kode') == 'santri'){
+			$this->load->view('templates/headerSantri');
+
+		}elseif($this->session->userdata('kode') == 'penguji'){
+			$this->load->view('templates/headerPenguji');
+
+		}else{
+			$this->load->view('templates/header');
+		}
 		$this->load->view('home/home');
 		$this->load->view('templates/footer');
 

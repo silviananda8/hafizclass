@@ -2,7 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Penguji extends CI_Controller {
-
+	function __construct(){
+        parent::__construct();
+        $this->load->database();
+        $this->load->model('m_penguji');
+    }
 
 	public function index(){
 		$this->load->view('templates/headerPenguji');
@@ -58,12 +62,14 @@ class Penguji extends CI_Controller {
 		$this->load->view('templates/footer');
 
 	}
+	
 	public function tambahSantri(){
 		$this->load->view('templates/headerPenguji');
 		$this->load->view('penguji/tambahSantri');
 		$this->load->view('templates/footer');
 
 	}
+
 	public function semuaPenguji(){
 		$this->load->view('templates/headerPenguji');
 		$this->load->view('penguji/semuaPenguji');
@@ -71,5 +77,34 @@ class Penguji extends CI_Controller {
 
 	}	
 
+	function regisSantri(){
+		$id_penguji = $this->session->userdata('id_penguji');
 
+		$data = array(
+			'ID_PENGUJI'			=> $id_penguji,
+			'EMAIL_SANTRI'	    	=> $this->input->post('email'),
+			'PASSWORD_SANTRI'	    => $this->input->post('password'),
+			'NAMA_SANTRI'			=> $this->input->post('nama'),
+			'JK_SANTRI'				=> $this->input->post('jenis_kelamin'),
+			'TINGKAT_PENDIDIKAN'	=> $this->input->post('tingkat_pendidikan')
+		);
+
+		$this->m_penguji->regisSantri($data);
+
+		$this->session->set_flashdata('msg','Registrasi Santri Telah berhasil Dilakukan');
+        redirect('penguji/tambahSantri');
+	}
+
+	function regisPenguji(){
+		$data = array(
+			'EMAIL_PENGUJI'	    	=> $this->input->post('email'),
+			'PASSWORD_PENGUJI'	    => $this->input->post('password'),
+			'NAMA_PENGUJI'			=> $this->input->post('nama')
+		);
+
+		$this->m_penguji->regisPenguji($data);
+
+		$this->session->set_flashdata('msg','Registrasi Penguji Telah berhasil Dilakukan');
+        redirect('home/regisPenguji');
+	}
 }

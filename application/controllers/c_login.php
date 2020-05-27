@@ -11,39 +11,47 @@ class c_login extends CI_Controller{
     $password       = $this->input->post('password',TRUE);
 
     $cek_santri     = $this->m_login->auth_santri($email,$password);
-    $cek_ustadz     = $this->m_login->auth_ustadz($email,$password);   
+    $cek_penguji     = $this->m_login->auth_penguji($email,$password);   
             
 	if($cek_santri->num_rows() > 0){
         $data               = $cek_santri->row_array();
         $id_santri          = $data['ID_SANTRI'];
         $email_santri       = $data['EMAIL_SANTRI'];
         $password_santri    = $data['PASSWORD_SANTRI'];
+        $nama_santri        = $data['NAMA_SANTRI'];
         $foto_santri        = $data['FOTO_SANTRI'];
+        $kode               = 'santri';
 
         $sesdata = array(
             'id_santri'          => $id_santri,
             'email_santri '      => $email_santri ,
             'password_santri'    => $password_santri,
+            'nama_santri'        => $nama_santri,
             'foto_santri'        => $foto_santri,
-            'logged_in' => TRUE
+            'kode'               => $kode,
+            'logged_in'          => TRUE
         );
 
         $this->session->set_flashdata('msg','Login Telah Berhasil Dilakukan');
 		$this->session->set_userdata($sesdata);
         redirect('santri/index');
 
-	}elseif($cek_ustadz->num_rows() > 0){
-        $data  = $cek_ustadz->row_array();
-        $id_ustadz          = $data['ID_USTADZ'];
-        $email_ustadz       = $data['EMAIL_USTADZ'];
-        $password_ustadz    = $data['PASSWORD_USTADZ'];
-        $foto_ustadz        = $data['FOTO_USTADZ'];
+	}elseif($cek_penguji->num_rows() > 0){
+        $data  = $cek_penguji->row_array();
+        $id_penguji          = $data['ID_PENGUJI'];
+        $email_penguji       = $data['EMAIL_PENGUJI'];
+        $password_penguji    = $data['PASSWORD_PENGUJI'];
+        $nama_penguji        = $data['NAMA_PENGUJI'];
+        $foto_penguji        = $data['FOTO_PENGUJI'];
+        $kode               = 'penguji';
 
         $sesdata = array(
-            'id_ustadz'          => $id_ustadz,
-            'email_ustadz '      => $email_ustadz ,
-            'password_ustadz'    => $password_ustadz,
-            'foto_ustadz'        => $foto_santri,
+            'id_penguji'          => $id_penguji,
+            'email_penguji '      => $email_penguji ,
+            'password_penguji'    => $password_penguji,
+            'nama_penguji'        => $nama_penguji,
+            'foto_penguji'        => $foto_santri,
+            'kode'             => $kode,
             'logged_in' => TRUE
         );
         

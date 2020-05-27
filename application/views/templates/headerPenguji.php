@@ -36,13 +36,13 @@
         <!-- Example single danger button -->
         <div class="btn-group">
           <button type="button" class="btn text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Nama Penguji
+            <?= $this->session->userdata('nama_penguji');?>
           </button>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="<?= base_url('penguji/profilPenguji');?>">Profil</a>
             <a class="dropdown-item" href="<?= base_url('penguji/tambahSantri');?>">Tambah Santri</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Keluar</a>
+            <a class="dropdown-item" href="<?= base_url('c_login/logout');?>">Keluar</a>
           </div>
         </div>
       </div>

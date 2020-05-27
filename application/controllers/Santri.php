@@ -2,6 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Santri extends CI_Controller {
+	function __construct(){
+        parent::__construct();
+        $this->load->database();
+        $this->load->model('m_santri');
+    }
 
 	public function index(){
 		$this->load->view('templates/headerSantri');
@@ -34,6 +39,5 @@ class Santri extends CI_Controller {
 		$this->load->view('santri/subtarget_santri');
 		$this->load->view('templates/footer');
 	}
-
 
 }
