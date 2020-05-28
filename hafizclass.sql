@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2020 at 12:34 AM
+-- Generation Time: May 28, 2020 at 10:43 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.28
 
@@ -43,9 +43,9 @@ CREATE TABLE `harian` (
 CREATE TABLE `komentar` (
   `ID_KOMEN` int(11) NOT NULL,
   `ID_PROGRESS` int(11) NOT NULL,
-  `STATUS_KOMEN` varchar(20) DEFAULT NULL,
-  `NAMA_KOMEN` varchar(35) DEFAULT NULL,
-  `ISI_KOMEN` text
+  `ISI_KOMEN` text,
+  `TANGGAL_KOMEN` date NOT NULL,
+  `AUDIO_REVISI` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -71,8 +71,9 @@ CREATE TABLE `penguji` (
 --
 
 INSERT INTO `penguji` (`ID_PENGUJI`, `EMAIL_PENGUJI`, `PASSWORD_PENGUJI`, `NAMA_PENGUJI`, `JK_PENGUJI`, `ALAMAT_PENGUJI`, `TELEPON_PENGUJI`, `FOTO_PENGUJI`, `TINGKAT_MENGUJI`) VALUES
-(1, 'penguji@gmail.com', '54321', 'Akbar A', 'Laki-laki', 'Jl. Kedurus, Karang Pilang', 2147483647, 'masjid-pogung-dalangan-GClYQv8I3So-unsplash.jpg', 'Hafalan Jus 29 dan 30'),
-(2, 'aaa@gmail.com', 'aaa', 'aaa', NULL, '', NULL, NULL, NULL);
+(1, 'penguji@gmail.com', '54321', 'Ust. Akbar A', 'Laki-laki', 'Jl. Kedurus, Karang Pilang', 2147483647, 'masjid-pogung-dalangan-GClYQv8I3So-unsplash.jpg', 'Hafalan Jus 29 dan 30'),
+(2, 'aaa@gmail.com', 'aaa', 'Ust. aaa', NULL, '', NULL, NULL, NULL),
+(4, 'bbb@gmail.com', 'bbb', 'Ust. bbb', NULL, '', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -83,11 +84,21 @@ INSERT INTO `penguji` (`ID_PENGUJI`, `EMAIL_PENGUJI`, `PASSWORD_PENGUJI`, `NAMA_
 CREATE TABLE `progress` (
   `ID_PROGRESS` int(11) NOT NULL,
   `ID_SANTRI` int(11) NOT NULL,
-  `ID_USTADZ` int(11) NOT NULL,
+  `ID_PENGUJI` int(11) NOT NULL,
   `JUDUL_PROGRESS` varchar(50) DEFAULT NULL,
+  `JENIS_PROGRESS` set('Hafalan','Membaca','Muroja''ah','') NOT NULL,
   `AUDIO` varchar(50) DEFAULT NULL,
   `TARGET` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `progress`
+--
+
+INSERT INTO `progress` (`ID_PROGRESS`, `ID_SANTRI`, `ID_PENGUJI`, `JUDUL_PROGRESS`, `JENIS_PROGRESS`, `AUDIO`, `TARGET`) VALUES
+(1, 1, 1, 'juz 30', 'Hafalan', NULL, NULL),
+(5, 1, 1, NULL, '', NULL, NULL),
+(6, 1, 4, NULL, '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -114,7 +125,8 @@ CREATE TABLE `santri` (
 
 INSERT INTO `santri` (`ID_SANTRI`, `ID_PENGUJI`, `EMAIL_SANTRI`, `PASSWORD_SANTRI`, `NAMA_SANTRI`, `JK_SANTRI`, `ALAMAT_SANTRI`, `TINGKAT_PENDIDIKAN`, `TELEPON_SANTRI`, `FOTO_SANTRI`) VALUES
 (1, 1, 'santri@gmail.com', '12345', 'Ikhwan Nabila A', 'Laki-laki', 'Jl. Kamboja', 'SMP', 87152375, 'ngaji.jpg'),
-(2, 1, 'asha@gmail.com', 'asha', 'asha', 'Perempuan', 'Jl. Anggrek', 'SD', NULL, NULL);
+(2, 1, 'asha@gmail.com', 'asha', 'asha', 'Perempuan', 'Jl. Anggrek', 'SD', NULL, NULL),
+(3, 2, 'kusuma@gmail.com', '12345', 'kusuma', 'Laki-laki', 'Jl. Lurian', 'SMP', 87936826, 'quran.jpg');
 
 -- --------------------------------------------------------
 
@@ -125,10 +137,21 @@ INSERT INTO `santri` (`ID_SANTRI`, `ID_PENGUJI`, `EMAIL_SANTRI`, `PASSWORD_SANTR
 CREATE TABLE `target` (
   `ID_TARGET` int(11) NOT NULL,
   `ID_PROGRESS` int(11) NOT NULL,
+  `JUDUL_TARGET` varchar(50) NOT NULL,
+  `DESKRIPSI_TARGET` text NOT NULL,
   `STATUS_TARGET` varchar(25) DEFAULT NULL,
   `TANGGAL_UPLOAD` date DEFAULT NULL,
   `BATAS_UPLOAD` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `target`
+--
+
+INSERT INTO `target` (`ID_TARGET`, `ID_PROGRESS`, `JUDUL_TARGET`, `DESKRIPSI_TARGET`, `STATUS_TARGET`, `TANGGAL_UPLOAD`, `BATAS_UPLOAD`) VALUES
+(1, 1, 'Hafalan juz 30', 'hafalan juz 30 boleh dicicil', 'Belum Tuntas', '2020-05-28', '2020-05-31'),
+(3, 5, 'Hafalan Jus 1', 'Surat Al-Baqoroh itu panjang, semangat ya', 'Belum Tuntas', NULL, '2020-05-31'),
+(4, 6, 'test', 'test', 'Belum Tuntas', NULL, '2020-05-29');
 
 --
 -- Indexes for dumped tables
@@ -161,7 +184,7 @@ ALTER TABLE `penguji`
 ALTER TABLE `progress`
   ADD PRIMARY KEY (`ID_PROGRESS`),
   ADD KEY `ID_SANTRI` (`ID_SANTRI`),
-  ADD KEY `ID_USTADZ` (`ID_USTADZ`);
+  ADD KEY `ID_USTADZ` (`ID_PENGUJI`);
 
 --
 -- Indexes for table `santri`
@@ -198,25 +221,25 @@ ALTER TABLE `komentar`
 -- AUTO_INCREMENT for table `penguji`
 --
 ALTER TABLE `penguji`
-  MODIFY `ID_PENGUJI` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_PENGUJI` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `progress`
 --
 ALTER TABLE `progress`
-  MODIFY `ID_PROGRESS` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_PROGRESS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `santri`
 --
 ALTER TABLE `santri`
-  MODIFY `ID_SANTRI` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_SANTRI` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `target`
 --
 ALTER TABLE `target`
-  MODIFY `ID_TARGET` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_TARGET` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -239,7 +262,7 @@ ALTER TABLE `komentar`
 --
 ALTER TABLE `progress`
   ADD CONSTRAINT `progress_ibfk_1` FOREIGN KEY (`ID_SANTRI`) REFERENCES `santri` (`ID_SANTRI`),
-  ADD CONSTRAINT `progress_ibfk_2` FOREIGN KEY (`ID_USTADZ`) REFERENCES `penguji` (`ID_PENGUJI`);
+  ADD CONSTRAINT `progress_ibfk_2` FOREIGN KEY (`ID_PENGUJI`) REFERENCES `penguji` (`ID_PENGUJI`);
 
 --
 -- Constraints for table `santri`
