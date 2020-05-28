@@ -2,22 +2,24 @@
 
     <div class="row justify-content-center">
       <!-- detail target -->
+      <?php foreach($data as $dt):?>
       <div class="col-3">
             <div class="card card-shadow mt-4">
               <div class="card-body">
                 <small>Judul Target</small>
-                 <h5>Judul Target Lorem ipsum dolor sit amet.</h5>
+                 <h5><?= $dt->JUDUL_TARGET;?></h5>
                  <small>Deskripsi Target :</small>
-                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, ducimus.</p>
+                 <p><?= $dt->DESKRIPSI_TARGET;?></p>
                 <small>Nama Penguji</small>
-                <h6><span>Ust. </span> Halifah</h6>
+                <h6><?= $dt->NAMA_PENGUJI;?></h6>
                 <small>Batas Waktu</small>
-                <h6>15 Mei 2020</h6>
+                <h6><?= $dt->BTS_UPLOAD;?></h6>
                 <small>Status</small>
-                <h6>Belum Tuntas</h6>
+                <h6><?= $dt->STATUS_TARGET;?></h6>
               </div>
             </div>
       </div>
+      <?php endforeach;?>
       <!-- end detail Target -->
 
       <div class="col-8">

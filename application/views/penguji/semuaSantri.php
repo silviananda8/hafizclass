@@ -17,33 +17,37 @@
                         <h6>Penguji</h6> 
                      </div>
                  </div>
+
+                 <?php foreach($data as $dt):?> 
                  <div class="row mt-2">
                     <div class="col-lg-12">       
-                     <div class="list-group card-shadow">
-                      <a href="<?= base_url('Santri/subTarget'); ?>" class="list-group-item list-group-item-action">
+                     <div class="list-group card-shadow mb-2">
+                      
+                      <a href="<?= site_url('penguji/profilSantri/'.$dt->ID_SANTRI);?>" class="list-group-item list-group-item-action">
                         <span class="row">
                             <div class="col-lg-5 text-left">
                                 <div class="row">
                                   <div class="col-3">
-                                     <img src="<?= base_url() ?>assets/img/ngaji.jpg" alt="..." class="rounded-circle img-fluid mr-3 float-right tugas-image" >
+                                     <img src="<?= base_url('') ?>assets/uploads/santri/avatar/<?= $dt->FOTO_SANTRI;?>" alt="..." class="rounded-circle img-fluid mr-3 float-right tugas-image" >
                                   </div>
                                   <div class="col-lg posisi-image p-2" >
                                     <h6>
-                                      Nama Santri <br>
+                                    <?= $dt->NAMA_SANTRI;?> <br>
                                     </h6>
 
                                   </div>
                                 </div>
                              </div>
                              <div class="col-lg-4">
-                                <p>Ust. Hanifah</p> 
+                                <p>Ust. <?= $dt->NAMA_PENGUJI;?></p> 
                              </div>
                         </span>
-                    </a>
+                      </a>
                       
                     </div>
                     </div>
                  </div>
+                 <?php endforeach;?>
 
                  <!-- end list target -->
               </div>

@@ -44,7 +44,7 @@
                       <a href="<?= site_url('santri/editDataSantri/'.$st->ID_SANTRI);?>" class="btn btn-light btn-block mb-5"> Edit Profil </a>
                       <small >Nama Penguji  </small>
                       <?php foreach($data as $dt):?>
-                      <h5>Ust. <?= $dt->NAMA_PENGUJI;?> </h5>
+                      <h5><?= $dt->NAMA_PENGUJI;?> </h5>
                       <?php endforeach;?>
                   </div>
                 </div>

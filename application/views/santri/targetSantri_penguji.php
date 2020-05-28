@@ -10,6 +10,7 @@
                     <div class="col-10">
                         <h5>Daftar Target</h5>
                     </div>
+
                     <div class="col-2">
                         <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal">
                           Tambah Target
@@ -19,6 +20,21 @@
                  <div class="h-divider"></div>
                  <!-- list target -->
                  <div class="row mt-4 ">
+
+                    <!-- alert tambah target berhasil -->
+                    <?php if($this->session->flashdata()== true):?>
+                    <div class="col-lg-12">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <?= $this->session->flashdata('msg'); ?>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                    <?php else:?>
+                    <?php endif;?>
+                    <!-- end alert tambah target -->
+
                      <div class="col-lg-5 ">
                          <h6 class="ml-3">Judul Target</h6>
                      </div>
@@ -32,34 +48,44 @@
                          <h6>Status </h6>
                      </div>
                  </div>
+
+                 <?php foreach($target as $dt):?>
                  <div class="row mt-2">
                     <div class="col-lg-12">       
                      <div class="list-group">
                       <a href="#" class="list-group-item list-group-item-action">
+                        
                         <span class="row">
                             <div class="col-lg-5 text-left">
-                                <h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h6>
+                                <h6><?= $dt->JUDUL_TARGET;?></h6>
                              </div>
                              <div class="col-lg-3">
-                                <p>Ust. Hanifah</p> 
+                                <p><?= $dt->NAMA_PENGUJI;?></p> 
                              </div>
                              <div class="col-lg-2">
-                                <p>15 Mei 2020</p> 
+                                <p><?= $dt->BATAS_UPLOAD;?></p> 
                              </div>
                              <div class="col-lg-2 text-center">
                                 <div class="form-group">
                                     <select class="form-control" id="exampleFormControlSelect1">
+                                    <?php if($dt->STATUS_TARGET == 'Belum Tuntas'):?>
                                         <option>Belum Tuntas</option>
                                         <option>Sudah Tuntas</option>
+                                    <?php else:?>
+                                        <option>Sudah Tuntas</option>
+                                        <option>Belum Tuntas</option>
+                                    <?php endif;?>
                                     </select>
                                 </div>
                              </div>
                         </span>
+
                     </a>
                       
                     </div>
                     </div>
                  </div>
+                 <?php endforeach;?>
 
                  <!-- end list target -->
               </div>
@@ -80,38 +106,43 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="">
+        <form action="<?php echo site_url('penguji/tambahTargetSantri');?>" method="post">
             <div class="form-group">
-                <label for="exampleFormControlInput1">Judul Target</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                <label for="judul_target">Judul Target</label>
+                <input type="text" class="form-control" id="judul_target" name="judul_target" placeholder="Judul Target" required>
             </div>
             <div class="form-group">
-                <label for="exampleFormControlTextarea1">Deskripsi Target</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Silahkan tulis deskripsi target" rows="3"></textarea>
+                <label for="deskripsi_target">Deskripsi Target</label>
+                <textarea class="form-control" id="deskripsi_target" name="deskripsi_target" placeholder="Silahkan tulis deskripsi target" rows="3"></textarea>
             </div>
             <div class="row">
                 <div class="col-lg">
                     <label for="exampleInputPassword1">Batas Waktu</label>
-                    <input type="text" name="batas_waktu" class="form-control" id="batas_waktu">
+                    <input type="text" class="form-control" id="batas_waktu" name="batas_waktu" required>
                 </div>
                 <div class="col-lg">
                     <div class="form-group">
-                        <label for="exampleFormControlSelect1">Example select</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option><span>Ust. </span> Halifah</option>
-                            <option><span>Ust. </span> Faris</option>
-                            <option><span>Ust. </span> Aisyah</option>
-                            <option><span>Ust. </span> Zubet</option>
+                        <label for="id_penguji">Daftar Ustadz</label>
+                        <select class="form-control" id="id_penguji" name="id_penguji">
+                        <?php foreach($penguji as $pj):?>
+                            <option value="<?= $pj->ID_PENGUJI;?>"><?= $pj->NAMA_PENGUJI;?></option>
+                        <?php endforeach;?>
                         </select>
                     </div>
                 </div>
             </div>
-        </form>
+            <?php foreach($data as $dt):?>
+            <input type="text" name="id_santri" class="form-control" id="id_santri" value="<?= $dt->ID_SANTRI;?>" hidden>
+            <?php endforeach;?>
+        
       </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-primary">Tambahkan</button>
+        <button type="submit" class="btn btn-primary">Tambahkan</button>
       </div>
+
+      </form>
     </div>
   </div>
 </div>

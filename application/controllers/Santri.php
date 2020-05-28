@@ -9,8 +9,11 @@ class Santri extends CI_Controller {
     }
 
 	public function index(){
+		$id_santri 		= $this->session->userdata('id_santri');
+		$data['data']	= $this->m_santri->targetBaru($id_santri)->result();
+
 		$this->load->view('templates/headerSantri');
-		$this->load->view('santri/detailSubtarget_santri');
+		$this->load->view('santri/detailSubtarget_santri',$data);
 		$this->load->view('santri/pengumpulan');
 		$this->load->view('santri/subtarget_santri');
 		$this->load->view('templates/footer');
@@ -18,13 +21,16 @@ class Santri extends CI_Controller {
 
 	public function profilSantri(){
 		$id_santri 		= $this->session->userdata('id_santri');
+
+		//data santri
         $data['santri'] = $this->m_santri->getSantri($id_santri)->result();
-		
 		foreach($data['santri'] as $dt){
 			$id_penguji = $dt->ID_PENGUJI;
 		}
-		
 		$data['data'] = $this->m_santri->getPenguji($id_penguji,$id_santri)->result();
+
+		//list target santri
+		$data['list'] = $this->m_santri->listTarget($id_santri)->result();
 
 		$this->load->view('templates/headerSantri');
 		$this->load->view('santri/dataSantri',$data);

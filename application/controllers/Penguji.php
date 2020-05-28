@@ -86,17 +86,24 @@ class Penguji extends CI_Controller {
         redirect('penguji/index');
 	}
 	
-		public function profilSantri(){
+		public function profilSantri($id_santri){
+		$data['data'] = $this->m_penguji->profilSantri($id_santri)->result();
+		$data['list'] = $this->m_penguji->listPengujiBySantri($id_santri)->result();
+		$data['target'] = $this->m_penguji->listTargetBySantri($id_santri)->result();
+		$data['penguji'] = $this->m_penguji->listPenguji()->result();
+
 		$this->load->view('templates/headerPenguji');
-		$this->load->view('santri/dataSantri_penguji');
+		$this->load->view('santri/dataSantri_penguji',$data);
 		$this->load->view('santri/targetSantri_penguji');
 		$this->load->view('santri/kalendarAbsen');
 		$this->load->view('templates/footer');
 
 	}
 		public function semuaSantri(){
+		$data['data'] = $this->m_penguji->semuaSantri()->result();
+		
 		$this->load->view('templates/headerPenguji');
-		$this->load->view('penguji/semuaSantri');
+		$this->load->view('penguji/semuaSantri',$data);
 		$this->load->view('templates/footer');
 
 	}
@@ -137,12 +144,41 @@ class Penguji extends CI_Controller {
 		$data = array(
 			'EMAIL_PENGUJI'	    	=> $this->input->post('email'),
 			'PASSWORD_PENGUJI'	    => $this->input->post('password'),
-			'NAMA_PENGUJI'			=> $this->input->post('nama')
+			'NAMA_PENGUJI'			=> "Ust. ".$this->input->post('nama')
 		);
 
 		$this->m_penguji->regisPenguji($data);
 
 		$this->session->set_flashdata('msg','Registrasi Penguji Telah berhasil Dilakukan');
         redirect('home/regisPenguji');
+	}
+
+	function tambahTargetSantri(){
+		$id_santri = $this->input->post('id_santri');
+		$progress = array(
+			'ID_PENGUJI'	=> $this->input->post('id_penguji'),
+			'ID_SANTRI'	    => $id_santri
+		);
+
+		$this->m_penguji->tambahProgress($progress);
+
+		$data['a'] = $this->m_penguji->selectLastIdProgress()->result();//select last input in table progress
+		foreach($data['a'] as $id){
+			$id_progress = $id->ID_PROGRESS;
+		}
+
+		$status_target = "Belum Tuntas";
+		$target = array(
+			'ID_PROGRESS'		=> $id_progress,
+			'JUDUL_TARGET'	    => $this->input->post('judul_target'),
+			'DESKRIPSI_TARGET'	=> $this->input->post('deskripsi_target'),
+			'STATUS_TARGET'	    => $status_target,
+			'BATAS_UPLOAD'	    => $this->input->post('batas_waktu')
+		);
+
+		$this->m_penguji->tambahTarget($target);
+
+		$this->session->set_flashdata('msg','Target Telah Ditambahkan');
+        redirect('penguji/profilSantri/'.$id_santri);
 	}
 }

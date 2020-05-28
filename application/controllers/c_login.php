@@ -60,7 +60,7 @@ class c_login extends CI_Controller{
             redirect('penguji/index');     
 
   }else{
-        echo $this->session->set_flashdata('msg','Username Atau Password Salah');
+        $this->session->set_flashdata('msg','Username Atau Password Salah');
         redirect('home/index');
     }
 	}

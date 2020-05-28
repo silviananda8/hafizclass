@@ -23,29 +23,32 @@
                          <h6>Status </h6>
                      </div>
                  </div>
+                 <?php foreach($list as $dt):?>
                  <div class="row mt-2">
                     <div class="col-lg-12">       
                      <div class="list-group">
                       <a href="<?= base_url('Santri/subTarget'); ?>" class="list-group-item list-group-item-action">
+                     
                         <span class="row">
                             <div class="col-lg-5 text-left">
-                                <h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h6>
+                                <h6><?= $dt->JUDUL_TARGET;?></h6>
                              </div>
                              <div class="col-lg-3">
-                                <p>Ust. Hanifah</p> 
+                                <p><?= $dt->NAMA_PENGUJI;?></p> 
                              </div>
                              <div class="col-lg-2">
-                                <p>15 Mei 2020</p> 
+                                <p><?= $dt->BTS_UPLOAD;?></p> 
                              </div>
                              <div class="col-lg-2 text-center">
-                                <p> Belum Tuntas</p>
+                                <p><?= $dt->STATUS_TARGET;?></p>
                              </div>
                         </span>
+
                     </a>
-                      
                     </div>
                     </div>
                  </div>
+                 <?php endforeach;?>
 
                  <!-- end list target -->
               </div>

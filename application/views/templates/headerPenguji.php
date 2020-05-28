@@ -10,6 +10,7 @@
 
     <!-- my CSS -->
     <link rel="stylesheet" href="<?= base_url(''); ?>style.css">
+    <link rel="stylesheet" href="<?= base_url(''); ?>assets/css/jquery.datetimepicker.min.css">
 
 
     <meta charset="UTF-8">
