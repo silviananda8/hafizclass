@@ -15,7 +15,7 @@ class Penguji extends CI_Controller {
 
 	}
 
-	public function subtarget(){
+	public function subtarget($id_target){
 		$this->load->view('templates/headerPenguji');
 		$this->load->view('santri/detailSubtarget_penguji');
 		$this->load->view('santri/subtarget_penguji');
@@ -155,25 +155,17 @@ class Penguji extends CI_Controller {
 
 	function tambahTargetSantri(){
 		$id_santri = $this->input->post('id_santri');
-		$progress = array(
-			'ID_PENGUJI'	=> $this->input->post('id_penguji'),
-			'ID_SANTRI'	    => $id_santri
-		);
-
-		$this->m_penguji->tambahProgress($progress);
-
-		$data['a'] = $this->m_penguji->selectLastIdProgress()->result();//select last input in table progress
-		foreach($data['a'] as $id){
-			$id_progress = $id->ID_PROGRESS;
-		}
-
+		$id_penguji = $this->input->post('id_penguji');
 		$status_target = "Belum Tuntas";
+
 		$target = array(
-			'ID_PROGRESS'		=> $id_progress,
 			'JUDUL_TARGET'	    => $this->input->post('judul_target'),
 			'DESKRIPSI_TARGET'	=> $this->input->post('deskripsi_target'),
 			'STATUS_TARGET'	    => $status_target,
-			'BATAS_UPLOAD'	    => $this->input->post('batas_waktu')
+			'BATAS_UPLOAD'	    => $this->input->post('batas_waktu'),
+			'TANGGAL_UPLOAD'	=> $this->input->post('tanggal_upload'),
+			'ID_SANTRI'			=> $id_santri,
+			'ID_PENGUJI'		=> $id_penguji
 		);
 
 		$this->m_penguji->tambahTarget($target);

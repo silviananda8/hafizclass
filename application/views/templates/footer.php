@@ -4,7 +4,12 @@
     <script src="<?= base_url('assets/'); ?>js/bootstrap.min.js" ></script>
     <script src="<?= base_url('assets/'); ?>js/jquery.datetimepicker.full.min.js" ></script>
     <script src="<?= base_url('assets/'); ?>js/myjs.js" ></script>
+    <script src="<?= base_url('assets/'); ?>js/jquery-ui-tambahan.js" ></script>
     <script src="<?php echo base_url().'assets/js/jquery.js'?>" type="text/javascript"></script>
     <script src="<?php echo base_url('assets/'); ?>js/jquery-ui.js" type="text/javascript"></script>
 	</body>
 </html>
+
+<script>
+    $('#tanggal_upload').datepicker({ dateFormat: "yy-mm-dd"}).datepicker("setDate", new Date());
+</script>

@@ -53,7 +53,7 @@
                  <div class="row mt-2">
                     <div class="col-lg-12">       
                      <div class="list-group">
-                      <a href="#" class="list-group-item list-group-item-action">
+                      <a href="<?= site_url('penguji/subtarget/'.$dt->ID_TARGET);?>" class="list-group-item list-group-item-action">
                         
                         <span class="row">
                             <div class="col-lg-5 text-left">
@@ -63,7 +63,7 @@
                                 <p><?= $dt->NAMA_PENGUJI;?></p> 
                              </div>
                              <div class="col-lg-2">
-                                <p><?= $dt->BATAS_UPLOAD;?></p> 
+                                <p><?= $dt->BTS_UPLOAD;?></p> 
                              </div>
                              <div class="col-lg-2 text-center">
                                 <div class="form-group">
@@ -131,10 +131,13 @@
                     </div>
                 </div>
             </div>
+
+            <input type="text" class="form-control" id="tanggal_upload" name="tanggal_upload" hidden>
+
             <?php foreach($data as $dt):?>
             <input type="text" name="id_santri" class="form-control" id="id_santri" value="<?= $dt->ID_SANTRI;?>" hidden>
             <?php endforeach;?>
-        
+                
       </div>
 
       <div class="modal-footer">

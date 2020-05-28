@@ -26,15 +26,15 @@ class m_santri extends CI_Model{
 
     function targetBaru($id_santri){
         $this->db->limit(1);
+        $this->db->where('target.STATUS_TARGET','Belum Tuntas');
         return $this->listTarget($id_santri);
     }
 
     function listTarget($id_santri){
         $this->db->select('target.*, penguji.NAMA_PENGUJI, DATE_FORMAT(target.BATAS_UPLOAD, "%d %M %Y") AS BTS_UPLOAD');
-        $this->db->from('santri, penguji, progress, target');
-        $this->db->where('santri.ID_SANTRI = progress.ID_SANTRI');
-        $this->db->where('penguji.ID_PENGUJI = progress.ID_PENGUJI');
-        $this->db->where('target.ID_PROGRESS = progress.ID_PROGRESS');
+        $this->db->from('santri, penguji, target');
+        $this->db->where('santri.ID_SANTRI = target.ID_SANTRI');
+        $this->db->where('penguji.ID_PENGUJI = target.ID_PENGUJI');
         $this->db->where('santri.ID_SANTRI',$id_santri);
         $this->db->order_by('target.ID_TARGET', 'DESC');
         $query = $this->db->get();

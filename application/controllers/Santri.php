@@ -81,9 +81,13 @@ class Santri extends CI_Controller {
         redirect('santri/index');
 	}
 
-	public function subTarget(){
+	public function subTarget($id_target){
+		$id_santri 		= $this->session->userdata('id_santri');
+		$data['data']	= $this->m_santri->targetBaru($id_santri)->result();
+
+
 		$this->load->view('templates/headerSantri');
-		$this->load->view('santri/detailSubtarget_santri');
+		$this->load->view('santri/detailSubtarget_santri',$data);
 		$this->load->view('santri/pengumpulan');
 		$this->load->view('santri/subtarget_santri');
 		$this->load->view('templates/footer');

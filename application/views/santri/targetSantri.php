@@ -27,7 +27,7 @@
                  <div class="row mt-2">
                     <div class="col-lg-12">       
                      <div class="list-group">
-                      <a href="<?= base_url('Santri/subTarget'); ?>" class="list-group-item list-group-item-action">
+                      <a href="<?= site_url('santri/subtarget/'.$dt->ID_TARGET);?>" class="list-group-item list-group-item-action">
                      
                         <span class="row">
                             <div class="col-lg-5 text-left">

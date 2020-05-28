@@ -11,6 +11,7 @@
     <!-- my CSS -->
     <link rel="stylesheet" href="<?= base_url(''); ?>style.css">
     <link rel="stylesheet" href="<?= base_url(''); ?>assets/css/jquery.datetimepicker.min.css">
+    <link rel="stylesheet" href="<?= base_url(''); ?>assets/css/jquery-ui.css">
 
 
     <meta charset="UTF-8">

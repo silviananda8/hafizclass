@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2020 at 10:43 AM
+-- Generation Time: May 28, 2020 at 02:45 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.28
 
@@ -83,22 +83,11 @@ INSERT INTO `penguji` (`ID_PENGUJI`, `EMAIL_PENGUJI`, `PASSWORD_PENGUJI`, `NAMA_
 
 CREATE TABLE `progress` (
   `ID_PROGRESS` int(11) NOT NULL,
-  `ID_SANTRI` int(11) NOT NULL,
-  `ID_PENGUJI` int(11) NOT NULL,
+  `ID_TARGET` int(11) NOT NULL,
   `JUDUL_PROGRESS` varchar(50) DEFAULT NULL,
-  `JENIS_PROGRESS` set('Hafalan','Membaca','Muroja''ah','') NOT NULL,
-  `AUDIO` varchar(50) DEFAULT NULL,
-  `TARGET` varchar(20) DEFAULT NULL
+  `JENIS_PROGRESS` varchar(25) DEFAULT NULL,
+  `AUDIO` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `progress`
---
-
-INSERT INTO `progress` (`ID_PROGRESS`, `ID_SANTRI`, `ID_PENGUJI`, `JUDUL_PROGRESS`, `JENIS_PROGRESS`, `AUDIO`, `TARGET`) VALUES
-(1, 1, 1, 'juz 30', 'Hafalan', NULL, NULL),
-(5, 1, 1, NULL, '', NULL, NULL),
-(6, 1, 4, NULL, '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -136,9 +125,10 @@ INSERT INTO `santri` (`ID_SANTRI`, `ID_PENGUJI`, `EMAIL_SANTRI`, `PASSWORD_SANTR
 
 CREATE TABLE `target` (
   `ID_TARGET` int(11) NOT NULL,
-  `ID_PROGRESS` int(11) NOT NULL,
-  `JUDUL_TARGET` varchar(50) NOT NULL,
-  `DESKRIPSI_TARGET` text NOT NULL,
+  `ID_SANTRI` int(11) NOT NULL,
+  `ID_PENGUJI` int(11) NOT NULL,
+  `JUDUL_TARGET` varchar(50) DEFAULT NULL,
+  `DESKRIPSI_TARGET` text,
   `STATUS_TARGET` varchar(25) DEFAULT NULL,
   `TANGGAL_UPLOAD` date DEFAULT NULL,
   `BATAS_UPLOAD` date DEFAULT NULL
@@ -148,10 +138,9 @@ CREATE TABLE `target` (
 -- Dumping data for table `target`
 --
 
-INSERT INTO `target` (`ID_TARGET`, `ID_PROGRESS`, `JUDUL_TARGET`, `DESKRIPSI_TARGET`, `STATUS_TARGET`, `TANGGAL_UPLOAD`, `BATAS_UPLOAD`) VALUES
-(1, 1, 'Hafalan juz 30', 'hafalan juz 30 boleh dicicil', 'Belum Tuntas', '2020-05-28', '2020-05-31'),
-(3, 5, 'Hafalan Jus 1', 'Surat Al-Baqoroh itu panjang, semangat ya', 'Belum Tuntas', NULL, '2020-05-31'),
-(4, 6, 'test', 'test', 'Belum Tuntas', NULL, '2020-05-29');
+INSERT INTO `target` (`ID_TARGET`, `ID_SANTRI`, `ID_PENGUJI`, `JUDUL_TARGET`, `DESKRIPSI_TARGET`, `STATUS_TARGET`, `TANGGAL_UPLOAD`, `BATAS_UPLOAD`) VALUES
+(7, 1, 1, 'Hafalan juz 30', 'Hafalan Juz 30 bisa dicicil', 'Belum Tuntas', '2020-05-28', '2020-06-28'),
+(8, 3, 4, 'Hafalan Jus 1', 'Surat Al-Baqoroh panjang, semangat ya', 'Belum Tuntas', '2020-05-28', '2020-06-28');
 
 --
 -- Indexes for dumped tables
@@ -183,8 +172,7 @@ ALTER TABLE `penguji`
 --
 ALTER TABLE `progress`
   ADD PRIMARY KEY (`ID_PROGRESS`),
-  ADD KEY `ID_SANTRI` (`ID_SANTRI`),
-  ADD KEY `ID_USTADZ` (`ID_PENGUJI`);
+  ADD KEY `ID_TARGET` (`ID_TARGET`);
 
 --
 -- Indexes for table `santri`
@@ -199,7 +187,8 @@ ALTER TABLE `santri`
 --
 ALTER TABLE `target`
   ADD PRIMARY KEY (`ID_TARGET`),
-  ADD KEY `ID_PROGRESS` (`ID_PROGRESS`);
+  ADD KEY `ID_SANTRI` (`ID_SANTRI`),
+  ADD KEY `ID_PENGUJI` (`ID_PENGUJI`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -227,7 +216,7 @@ ALTER TABLE `penguji`
 -- AUTO_INCREMENT for table `progress`
 --
 ALTER TABLE `progress`
-  MODIFY `ID_PROGRESS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID_PROGRESS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `santri`
@@ -239,7 +228,7 @@ ALTER TABLE `santri`
 -- AUTO_INCREMENT for table `target`
 --
 ALTER TABLE `target`
-  MODIFY `ID_TARGET` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_TARGET` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
@@ -249,20 +238,19 @@ ALTER TABLE `target`
 -- Constraints for table `harian`
 --
 ALTER TABLE `harian`
-  ADD CONSTRAINT `harian_ibfk_1` FOREIGN KEY (`ID_PROGRESS`) REFERENCES `progress` (`ID_PROGRESS`);
+  ADD CONSTRAINT `harian_ibfk_1` FOREIGN KEY (`ID_PROGRESS`) REFERENCES `target` (`ID_TARGET`);
 
 --
 -- Constraints for table `komentar`
 --
 ALTER TABLE `komentar`
-  ADD CONSTRAINT `komentar_ibfk_1` FOREIGN KEY (`ID_PROGRESS`) REFERENCES `progress` (`ID_PROGRESS`);
+  ADD CONSTRAINT `komentar_ibfk_1` FOREIGN KEY (`ID_PROGRESS`) REFERENCES `target` (`ID_TARGET`);
 
 --
 -- Constraints for table `progress`
 --
 ALTER TABLE `progress`
-  ADD CONSTRAINT `progress_ibfk_1` FOREIGN KEY (`ID_SANTRI`) REFERENCES `santri` (`ID_SANTRI`),
-  ADD CONSTRAINT `progress_ibfk_2` FOREIGN KEY (`ID_PENGUJI`) REFERENCES `penguji` (`ID_PENGUJI`);
+  ADD CONSTRAINT `progress_ibfk_1` FOREIGN KEY (`ID_TARGET`) REFERENCES `target` (`ID_TARGET`);
 
 --
 -- Constraints for table `santri`
@@ -274,7 +262,8 @@ ALTER TABLE `santri`
 -- Constraints for table `target`
 --
 ALTER TABLE `target`
-  ADD CONSTRAINT `target_ibfk_1` FOREIGN KEY (`ID_PROGRESS`) REFERENCES `progress` (`ID_PROGRESS`);
+  ADD CONSTRAINT `target_ibfk_1` FOREIGN KEY (`ID_SANTRI`) REFERENCES `santri` (`ID_SANTRI`),
+  ADD CONSTRAINT `target_ibfk_2` FOREIGN KEY (`ID_PENGUJI`) REFERENCES `penguji` (`ID_PENGUJI`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
