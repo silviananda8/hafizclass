@@ -28,7 +28,7 @@
                             <div class="col-lg-5 text-left">
                                 <div class="row">
                                   <div class="col-3">
-                                     <img src="<?= base_url('') ?>assets/uploads/santri/avatar/<?= $dt->FOTO_SANTRI;?>" alt="..." class="rounded-circle img-fluid mr-3 float-right tugas-image" >
+                                     <img src="<?= base_url('') ?>assets/uploads/avatar/<?= $dt->FOTO_SANTRI;?>" alt="..." class="rounded-circle img-fluid mr-3 float-right tugas-image" >
                                   </div>
                                   <div class="col-lg posisi-image p-2" >
                                     <h6>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2020 at 02:45 PM
+-- Generation Time: May 29, 2020 at 05:15 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.28
 
@@ -30,9 +30,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `harian` (
   `ID_HARIAN` int(11) NOT NULL,
-  `ID_PROGRESS` int(11) NOT NULL,
-  `STATUS_HARIAN` varchar(25) DEFAULT NULL
+  `ID_TARGET` int(11) NOT NULL,
+  `TANGGAL_HARIAN` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `harian`
+--
+
+INSERT INTO `harian` (`ID_HARIAN`, `ID_TARGET`, `TANGGAL_HARIAN`) VALUES
+(6, 7, '2020-05-28'),
+(7, 7, '2020-05-29'),
+(8, 8, '2020-05-29');
 
 -- --------------------------------------------------------
 
@@ -43,10 +52,23 @@ CREATE TABLE `harian` (
 CREATE TABLE `komentar` (
   `ID_KOMEN` int(11) NOT NULL,
   `ID_PROGRESS` int(11) NOT NULL,
+  `NAMA_PENGIRIM` varchar(50) DEFAULT NULL,
+  `AVATAR_PENGIRIM` text,
   `ISI_KOMEN` text,
-  `TANGGAL_KOMEN` date NOT NULL,
-  `AUDIO_REVISI` text NOT NULL
+  `TANGGAL_KOMEN` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `komentar`
+--
+
+INSERT INTO `komentar` (`ID_KOMEN`, `ID_PROGRESS`, `NAMA_PENGIRIM`, `AVATAR_PENGIRIM`, `ISI_KOMEN`, `TANGGAL_KOMEN`) VALUES
+(1, 10, ' Ust. Akbar A', 'masjid-pogung-dalangan-GClYQv8I3So-unsplash.jpg', 'kurang jelas', '29-May-2020 16:56:40 '),
+(2, 10, 'Ikhwan Nabila A', 'ngaji.jpg', 'baik akan saya perbaiki', '29-May-2020 17:00:00 '),
+(3, 14, 'Ust. Akbar A', 'masjid-pogung-dalangan-GClYQv8I3So-unsplash.jpg', 'untuk progress ini sudah cukup baik', ''),
+(4, 15, 'kusuma', 'quran.jpg', NULL, '29-May-2020 21:56:05'),
+(5, 15, 'kusuma', 'quran.jpg', 'jika perlu diperbaiki bilang saja pak', '29-May-2020 21:56:55'),
+(6, 15, 'kusuma', 'quran.jpg', 'test', '29-May-2020 22:02:26');
 
 -- --------------------------------------------------------
 
@@ -83,11 +105,23 @@ INSERT INTO `penguji` (`ID_PENGUJI`, `EMAIL_PENGUJI`, `PASSWORD_PENGUJI`, `NAMA_
 
 CREATE TABLE `progress` (
   `ID_PROGRESS` int(11) NOT NULL,
-  `ID_TARGET` int(11) NOT NULL,
+  `ID_HARIAN` int(11) NOT NULL,
   `JUDUL_PROGRESS` varchar(50) DEFAULT NULL,
+  `DESKRIPSI_PROGRESS` text NOT NULL,
   `JENIS_PROGRESS` varchar(25) DEFAULT NULL,
-  `AUDIO` varchar(50) DEFAULT NULL
+  `STATUS_PROGRESS` varchar(25) NOT NULL,
+  `AUDIO` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `progress`
+--
+
+INSERT INTO `progress` (`ID_PROGRESS`, `ID_HARIAN`, `JUDUL_PROGRESS`, `DESKRIPSI_PROGRESS`, `JENIS_PROGRESS`, `STATUS_PROGRESS`, `AUDIO`) VALUES
+(10, 6, 'asd', 'aaaa', 'Menghafal', 'Belum Dinilai', 'WhatsApp_Audio_2020-05-28_at_17.01.21.mp3'),
+(11, 6, 'asdasdasd', 'asdasdasd', 'Menghafal', 'Belum Dinilai', 'WhatsApp_Audio_2020-05-28_at_17.01.033.ogg'),
+(14, 7, 'vbvb', 'vbvb', 'Menghafal', 'Belum Dinilai', 's2-2018-360607-tableofcontent.pdf'),
+(15, 8, 'surat al-fatihah', 'menghafal surat al-fatihah, maaf jika kurang lancar', 'Menghafal', 'Belum Dinilai', 'WhatsApp_Audio_2020-05-28_at_17.01.16.ogg');
 
 -- --------------------------------------------------------
 
@@ -140,7 +174,8 @@ CREATE TABLE `target` (
 
 INSERT INTO `target` (`ID_TARGET`, `ID_SANTRI`, `ID_PENGUJI`, `JUDUL_TARGET`, `DESKRIPSI_TARGET`, `STATUS_TARGET`, `TANGGAL_UPLOAD`, `BATAS_UPLOAD`) VALUES
 (7, 1, 1, 'Hafalan juz 30', 'Hafalan Juz 30 bisa dicicil', 'Belum Tuntas', '2020-05-28', '2020-06-28'),
-(8, 3, 4, 'Hafalan Jus 1', 'Surat Al-Baqoroh panjang, semangat ya', 'Belum Tuntas', '2020-05-28', '2020-06-28');
+(8, 3, 4, 'Hafalan Jus 1', 'Surat Al-Baqoroh panjang, semangat ya', 'Belum Tuntas', '2020-05-28', '2020-06-28'),
+(9, 1, 2, 'aaa', 'aaa', 'Sudah Tuntas', '2020-05-28', '2020-05-31');
 
 --
 -- Indexes for dumped tables
@@ -151,7 +186,7 @@ INSERT INTO `target` (`ID_TARGET`, `ID_SANTRI`, `ID_PENGUJI`, `JUDUL_TARGET`, `D
 --
 ALTER TABLE `harian`
   ADD PRIMARY KEY (`ID_HARIAN`),
-  ADD KEY `ID_PROGRESS` (`ID_PROGRESS`);
+  ADD KEY `ID_PROGRESS` (`ID_TARGET`);
 
 --
 -- Indexes for table `komentar`
@@ -172,7 +207,7 @@ ALTER TABLE `penguji`
 --
 ALTER TABLE `progress`
   ADD PRIMARY KEY (`ID_PROGRESS`),
-  ADD KEY `ID_TARGET` (`ID_TARGET`);
+  ADD KEY `ID_HARIAN` (`ID_HARIAN`);
 
 --
 -- Indexes for table `santri`
@@ -198,13 +233,13 @@ ALTER TABLE `target`
 -- AUTO_INCREMENT for table `harian`
 --
 ALTER TABLE `harian`
-  MODIFY `ID_HARIAN` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_HARIAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `ID_KOMEN` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_KOMEN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `penguji`
@@ -216,7 +251,7 @@ ALTER TABLE `penguji`
 -- AUTO_INCREMENT for table `progress`
 --
 ALTER TABLE `progress`
-  MODIFY `ID_PROGRESS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_PROGRESS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `santri`
@@ -228,7 +263,7 @@ ALTER TABLE `santri`
 -- AUTO_INCREMENT for table `target`
 --
 ALTER TABLE `target`
-  MODIFY `ID_TARGET` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID_TARGET` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -238,19 +273,19 @@ ALTER TABLE `target`
 -- Constraints for table `harian`
 --
 ALTER TABLE `harian`
-  ADD CONSTRAINT `harian_ibfk_1` FOREIGN KEY (`ID_PROGRESS`) REFERENCES `target` (`ID_TARGET`);
+  ADD CONSTRAINT `harian_ibfk_1` FOREIGN KEY (`ID_TARGET`) REFERENCES `target` (`ID_TARGET`);
 
 --
 -- Constraints for table `komentar`
 --
 ALTER TABLE `komentar`
-  ADD CONSTRAINT `komentar_ibfk_1` FOREIGN KEY (`ID_PROGRESS`) REFERENCES `target` (`ID_TARGET`);
+  ADD CONSTRAINT `komentar_ibfk_1` FOREIGN KEY (`ID_PROGRESS`) REFERENCES `progress` (`ID_PROGRESS`);
 
 --
 -- Constraints for table `progress`
 --
 ALTER TABLE `progress`
-  ADD CONSTRAINT `progress_ibfk_1` FOREIGN KEY (`ID_TARGET`) REFERENCES `target` (`ID_TARGET`);
+  ADD CONSTRAINT `progress_ibfk_1` FOREIGN KEY (`ID_HARIAN`) REFERENCES `harian` (`ID_HARIAN`);
 
 --
 -- Constraints for table `santri`

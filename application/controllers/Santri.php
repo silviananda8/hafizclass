@@ -5,12 +5,23 @@ class Santri extends CI_Controller {
 	function __construct(){
         parent::__construct();
         $this->load->database();
-        $this->load->model('m_santri');
+		$this->load->model('m_santri');
     }
 
 	public function index(){
 		$id_santri 		= $this->session->userdata('id_santri');
 		$data['data']	= $this->m_santri->targetBaru($id_santri)->result();
+		
+		$id_target = '';
+		foreach($data['data'] as $dt){
+			$id_target = $dt->ID_TARGET;
+		}
+
+		if($id_target != ''){
+			$this->load->model('m_komen');
+			$data['komen'] 		= $this->m_komen->getKomenByTarget($id_target)->result();
+			$data['progress'] 	= $this->m_komen->getProgressByTarget($id_target)->result();
+		}
 
 		$this->load->view('templates/headerSantri');
 		$this->load->view('santri/detailSubtarget_santri',$data);
@@ -54,7 +65,7 @@ class Santri extends CI_Controller {
 
         $foto   = $_FILES['foto'];
         if($foto=''){}else{
-            $config['upload_path']      = './assets/uploads/santri/avatar/';
+            $config['upload_path']      = './assets/uploads/avatar/';
             $config['allowed_types']    = 'jpg|jpeg|gif|png';
             $config['max_size']             = 4096;
 
@@ -84,7 +95,11 @@ class Santri extends CI_Controller {
 	public function subTarget($id_target){
 		$id_santri 		= $this->session->userdata('id_santri');
 		$data['data']	= $this->m_santri->listTargetByTarget($id_target,$id_santri)->result();
+		$data['santri']	= $this->m_santri->getSantri($id_santri)->result();
 
+		$this->load->model('m_komen');
+		$data['komen'] 		= $this->m_komen->getKomenByTarget($id_target)->result();
+		$data['progress'] 	= $this->m_komen->getProgressByTarget($id_target)->result();
 
 		$this->load->view('templates/headerSantri');
 		$this->load->view('santri/detailSubtarget_santri',$data);
@@ -128,6 +143,7 @@ class Santri extends CI_Controller {
 				'JUDUL_PROGRESS' 	=> $this->input->post('judul_progress'),
 				'DESKRIPSI_PROGRESS'=> $this->input->post('deskripsi_progress'),
 				'JENIS_PROGRESS'	=> $this->input->post('jenis_progress'),
+				'STATUS_HARIAN'		=> "Belum Dinilai",
 				'AUDIO'				=> $audio
 			);
 			$this->session->set_flashdata('msg','Data berhasil Ditambahkan');
@@ -138,7 +154,6 @@ class Santri extends CI_Controller {
 			//insert into harian
 			$harian = array(
 				'ID_TARGET'			=> $id_target,
-				'STATUS_HARIAN'		=> "Belum Dinilai",
 				'TANGGAL_HARIAN'	=> $tanggal_harian
 			);
 			$this->m_santri->tambahHarian($harian);

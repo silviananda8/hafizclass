@@ -13,7 +13,7 @@
                  <div class="h-divider mb-4"></div>
                  <div class="row justify-content-center">
                   <div class="col-lg-2 mr-4">
-                    <img src="<?= base_url('') ?>assets/uploads/penguji/avatar/<?= $st->FOTO_PENGUJI;?>" class="rounded" alt="..." style="height: 150px; width: 150px;">
+                    <img src="<?= base_url('') ?>assets/uploads/avatar/<?= $st->FOTO_PENGUJI;?>" class="rounded" alt="..." style="height: 150px; width: 150px;">
                   </div>
                   <div class="col-lg-7">
                       <div class="row">

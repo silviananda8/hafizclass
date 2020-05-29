@@ -42,7 +42,7 @@
                 <div class="col-10">
                     <div class="form-group">
                       <label for="exampleFormControlFile1">Pilih Audio</label>
-                      <input type="file" class="form-control" id="audio" name="audio" >
+                      <input type="file" class="form-control" id="audio" name="audio" accept="audio/*">
                     </div>
                 </div>
 
@@ -50,7 +50,7 @@
                 <input type="text" class="form-control" id="id_target" name="id_target" value="<?= $dt->ID_TARGET;?>" hidden>
                 <?php endforeach;?>
 
-                <input type="text" class="form-control" id="tanggal_upload" name="tanggal_harian" hidden>
+                <input type="text" class="form-control"  name="tanggal_harian" id="tanggal_upload" hidden>
 
                 <div class="col-2">
                   <button class="btn btn-success float-right btn-block mt-4">Kirim</button>

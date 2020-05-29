@@ -59,7 +59,7 @@ class Penguji extends CI_Controller {
 
         $foto   = $_FILES['foto'];
         if($foto=''){}else{
-            $config['upload_path']      = './assets/uploads/penguji/avatar/';
+            $config['upload_path']      = './assets/uploads/avatar/';
             $config['allowed_types']    = 'jpg|jpeg|gif|png';
             $config['max_size']         = 4096;
 

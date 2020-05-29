@@ -3,6 +3,7 @@
     <div class="row justify-content-center">
       <!-- detail target -->
       <?php foreach($data as $dt):?>
+      <?php if(isset($dt->ID_TARGET)):?>
       <div class="col-3">
             <div class="card card-shadow mt-4">
               <div class="card-body">
@@ -19,6 +20,15 @@
               </div>
             </div>
       </div>
+      <?php else:?>
+        <div class="col-3">
+            <div class="card card-shadow mt-4">
+              <div class="card-body">
+                Tdak Ada Target Untuk Dikerjakan
+              </div>
+            </div>
+      </div>
+      <?php endif?>
       <?php endforeach;?>
       <!-- end detail Target -->
 
