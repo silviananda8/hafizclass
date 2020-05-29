@@ -22,6 +22,8 @@
                   <select class="form-control" id="exampleFormControlSelect1">
                     <option>Belum Dinilai</option>
                     <option>Remidi</option>
+                    <option>Lancar</option>
+                    <option>Kurang Lancar</option>
                   </select>
                   </div>
               </div>

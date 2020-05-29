@@ -83,7 +83,7 @@ class Santri extends CI_Controller {
 
 	public function subTarget($id_target){
 		$id_santri 		= $this->session->userdata('id_santri');
-		$data['data']	= $this->m_santri->targetBaru($id_santri)->result();
+		$data['data']	= $this->m_santri->listTargetByTarget($id_target,$id_santri)->result();
 
 
 		$this->load->view('templates/headerSantri');
@@ -91,6 +91,77 @@ class Santri extends CI_Controller {
 		$this->load->view('santri/pengumpulan');
 		$this->load->view('santri/subtarget_santri');
 		$this->load->view('templates/footer');
+	}
+
+	function pengumpulanTugas(){
+		$id_target = $this->input->post('id_target');
+		$tanggal_harian = $this->input->post('tanggal_harian');
+		$audio   = $_FILES['audio'];
+        if($audio=''){}else{
+            $config['upload_path']      = './assets/uploads/audio/';
+            $config['allowed_types']    = '*';
+            $config['max_size']         = 4096;
+
+            $this->load->library('upload');
+            $this->upload->initialize($config);
+
+            if(!$this->upload->do_upload('audio')){
+				echo $this->upload->display_errors();die();
+            }else{
+                $audio = $this->upload->data('file_name');
+            }
+		}
+		
+		//cek dari tabel harian
+		$bb = $this->m_santri->cekHarian($id_target,$tanggal_harian)->result();
+		foreach($bb as $b){
+			$tgl = $b->TANGGAL_HARIAN;
+			$harn = $b->ID_HARIAN;
+		}
+
+
+		if($tgl == $tanggal_harian){
+
+			//insert into progress
+			$progress = array(
+				'ID_HARIAN' 		=> $harn,
+				'JUDUL_PROGRESS' 	=> $this->input->post('judul_progress'),
+				'DESKRIPSI_PROGRESS'=> $this->input->post('deskripsi_progress'),
+				'JENIS_PROGRESS'	=> $this->input->post('jenis_progress'),
+				'AUDIO'				=> $audio
+			);
+			$this->session->set_flashdata('msg','Data berhasil Ditambahkan');
+			$this->m_santri->tambahProgress($progress);
+			redirect('santri/subTarget/'.$id_target);
+
+		}else{
+			//insert into harian
+			$harian = array(
+				'ID_TARGET'			=> $id_target,
+				'STATUS_HARIAN'		=> "Belum Dinilai",
+				'TANGGAL_HARIAN'	=> $tanggal_harian
+			);
+			$this->m_santri->tambahHarian($harian);
+
+			//ambil id harian yang terakhir ditambahkan
+			$azz = $this->m_santri->cekHarian($id_target,$tanggal_harian)->result();
+			foreach($azz as $id){
+				$id_har = $id->ID_HARIAN;
+			}
+
+			//insert into progress
+			$progress = array(
+				'ID_HARIAN' 		=> $id_har,
+				'JUDUL_PROGRESS' 	=> $this->input->post('judul_progress'),
+				'DESKRIPSI_PROGRESS'=> $this->input->post('deskripsi_progress'),
+				'JENIS_PROGRESS'	=> $this->input->post('jenis_progress'),
+				'AUDIO'				=> $audio
+			);
+
+			$this->session->set_flashdata('msg','Data berhasil Ditambahkan');
+			$this->m_santri->tambahProgress($progress);
+			redirect('santri/subTarget/'.$id_target);
+		}
 	}
 
 }

@@ -30,6 +30,11 @@ class m_santri extends CI_Model{
         return $this->listTarget($id_santri);
     }
 
+    function listTargetByTarget($id_target,$id_santri){
+        $this->db->where('target.ID_TARGET',$id_target);
+        return $this->listTarget($id_santri);
+    }
+
     function listTarget($id_santri){
         $this->db->select('target.*, penguji.NAMA_PENGUJI, DATE_FORMAT(target.BATAS_UPLOAD, "%d %M %Y") AS BTS_UPLOAD');
         $this->db->from('santri, penguji, target');
@@ -38,6 +43,21 @@ class m_santri extends CI_Model{
         $this->db->where('santri.ID_SANTRI',$id_santri);
         $this->db->order_by('target.ID_TARGET', 'DESC');
         $query = $this->db->get();
+        return $query;
+    }
+
+    function tambahHarian($harian){
+        $this->db->insert('harian', $harian);
+    }
+
+    function tambahProgress($progress){
+        $this->db->insert('progress', $progress);
+    }
+
+    function cekHarian($id_target,$tanggal_harian){
+        $this->db->where('ID_TARGET',$id_target);
+        $this->db->where('TANGGAL_HARIAN',$tanggal_harian);
+        $query = $this->db->get('harian');
         return $query;
     }
 }
