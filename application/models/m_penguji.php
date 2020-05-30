@@ -53,7 +53,7 @@ class m_penguji extends CI_Model{
     }
 
     function listPengujiBySantri($id_santri){
-        $query = $this->db->query("SELECT penguji.NAMA_PENGUJI from penguji WHERE penguji.ID_PENGUJI NOT IN (SELECT ID_PENGUJI FROM santri WHERE ID_SANTRI='$id_santri')");
+        $query = $this->db->query("SELECT penguji.NAMA_PENGUJI, penguji.ID_PENGUJI from penguji WHERE penguji.ID_PENGUJI NOT IN (SELECT ID_PENGUJI FROM santri WHERE ID_SANTRI='$id_santri')");
         return $query;
     }
 
@@ -64,7 +64,7 @@ class m_penguji extends CI_Model{
     }
 
     function listTargetBySantri($id_santri){
-        $this->db->select('target.*, penguji.NAMA_PENGUJI, DATE_FORMAT(target.BATAS_UPLOAD, "%d %M %Y") AS BTS_UPLOAD');
+        $this->db->select('target.*, penguji.NAMA_PENGUJI, penguji.ID_PENGUJI, DATE_FORMAT(target.BATAS_UPLOAD, "%d %M %Y") AS BTS_UPLOAD');
         $this->db->from('santri, penguji, target');
         $this->db->where('santri.ID_SANTRI = target.ID_SANTRI');
         $this->db->where('penguji.ID_PENGUJI = target.ID_PENGUJI');
@@ -132,5 +132,13 @@ class m_penguji extends CI_Model{
         $this->db->where('progress.ID_HARIAN = harian.ID_HARIAN');
     }
 
+    function updateStatusTarget($id_target,$data){
+        $this->db->where('ID_TARGET', $id_target);
+		$this->db->update('target', $data);
+    }
 
+    function updatePengujiSantri($id_santri,$data){
+        $this->db->where('ID_SANTRI', $id_santri);
+		$this->db->update('santri', $data);
+    }
 }

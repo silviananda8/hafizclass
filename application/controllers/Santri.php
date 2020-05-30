@@ -184,4 +184,18 @@ class Santri extends CI_Controller {
 		}
 	}
 
+	function updateStatusHarian(){
+		$id_progress 	 = $this->input->post('id_progress');
+		$status_progress = $this->input->post('status_progress');
+
+		$result['pesan']	= "Status Harian Berhasil diPerbarui";
+
+		$data=array(
+			'STATUS_PROGRESS' => $status_progress
+		);
+
+		$this->m_santri->updateStatusHarian($id_progress,$data);
+		echo json_encode($result);
+	}
+
 }

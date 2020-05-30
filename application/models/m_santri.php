@@ -60,4 +60,9 @@ class m_santri extends CI_Model{
         $query = $this->db->get('harian');
         return $query;
     }
+
+    function updateStatusHarian($id_progress,$data){
+        $this->db->where('ID_PROGRESS', $id_progress);
+		$this->db->update('progress', $data);
+    }
 }

@@ -16,15 +16,15 @@
                 <h6><?= $tg->BTS_UPLOAD;?></h6>
                 <small>Status</small>
                  <div class="form-group">
-                    <select class="form-control" id="exampleFormControlSelect1">
+                  <select class="form-control" id="status_target" onchange="status_target(<?= $tg->ID_TARGET;?>,this)">
                     <?php if($tg->STATUS_TARGET == "Belum Tuntas"):?>
-                      <option>Belum Tuntas</option>
-                      <option>Sudah Tuntas</option>
+                      <option value="Belum Tuntas">Belum Tuntas</option>
+                      <option value="SudahTuntas">Sudah Tuntas</option>
                     <?php else:?>
-                      <option>Sudah Tuntas</option>
-                      <option>Belum Tuntas</option>
+                      <option value="SudahTuntas">Sudah Tuntas</option>
+                      <option value="Belum Tuntas">Belum Tuntas</option>
                     <?php endif;?>
-                    </select>
+                  </select>
                  </div>
                 <span class="badge  badge-primary mt-3 mr-1 pr-2 pl-2">Edit</span>
                 <span class="badge  badge-danger mt-3">Hapus</span>

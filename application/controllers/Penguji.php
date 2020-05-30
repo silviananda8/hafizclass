@@ -197,4 +197,32 @@ class Penguji extends CI_Controller {
 		$this->session->set_flashdata('msg','Target Telah Ditambahkan');
         redirect('penguji/profilSantri/'.$id_santri);
 	}
+
+	function updateStatusTarget(){
+		$id_target 	 = $this->input->post('id_target');
+		$status_target = $this->input->post('status_target');
+
+		$result['pesan']	= "Status Target Berhasil diPerbarui";
+
+		$data=array(
+			'STATUS_TARGET' => $status_target
+		);
+
+		$this->m_penguji->updateStatusTarget($id_target,$data);
+		echo json_encode($result);
+	}
+
+	function updatePenguji(){
+		$id_santri 	 	= $this->input->post('id_santri');
+		$id_penguji 	= $this->input->post('id_penguji');
+
+		$result['pesan']	= "Penguji Telah Berhasil diPerbarui";
+
+		$data=array(
+			'ID_PENGUJI' => $id_penguji
+		);
+
+		$this->m_penguji->updatePengujiSantri($id_santri,$data);
+		echo json_encode($result);
+	}
 }

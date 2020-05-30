@@ -38,11 +38,10 @@
                   <div class="col-lg-2">
                       <form action="">
                         <div class="form-group">
-                          <label for="exampleFormControlSelect1">Nama Penguji</label>
-                          <select class="form-control" id="exampleFormControlSelect1">
-                            <option> Ust. <?= $dt->NAMA_PENGUJI;?></option>
+                          <select class="form-control" id="nama_penguji" onchange="updatePenguji(<?= $dt->ID_SANTRI;?>,this)">
+                              <option value="<?= $dt->ID_PENGUJI;?>"> Ust. <?= $dt->NAMA_PENGUJI;?></option>
                             <?php foreach($list as $lt):?>
-                              <option> <?= $lt->NAMA_PENGUJI?></option>
+                              <option value="<?= $lt->ID_PENGUJI;?>"> Ust. <?= $lt->NAMA_PENGUJI?></option>
                             <?php endforeach;?>
                           </select>
                         </div>

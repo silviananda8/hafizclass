@@ -53,34 +53,34 @@
                  <div class="row mt-2">
                     <div class="col-lg-12">       
                      <div class="list-group">
-                      <a href="<?= site_url('penguji/subtarget/'.$dt->ID_TARGET);?>" class="list-group-item list-group-item-action">
-                        
-                        <span class="row">
-                            <div class="col-lg-5 text-left">
-                                <h6><?= $dt->JUDUL_TARGET;?></h6>
-                             </div>
-                             <div class="col-lg-3">
-                                <p>Ust. <?= $dt->NAMA_PENGUJI;?></p> 
-                             </div>
-                             <div class="col-lg-2">
-                                <p><?= $dt->BTS_UPLOAD;?></p> 
-                             </div>
-                             <div class="col-lg-2 text-center">
-                                <div class="form-group">
-                                    <select class="form-control" id="exampleFormControlSelect1">
-                                    <?php if($dt->STATUS_TARGET == 'Belum Tuntas'):?>
-                                        <option>Belum Tuntas</option>
-                                        <option>Sudah Tuntas</option>
-                                    <?php else:?>
-                                        <option>Sudah Tuntas</option>
-                                        <option>Belum Tuntas</option>
-                                    <?php endif;?>
-                                    </select>
+                        <a href="<?= site_url('penguji/subtarget/'.$dt->ID_TARGET);?>" class="list-group-item list-group-item-action">
+                            <span class="row">
+                                <div class="col-lg-5 text-left">
+                                    <h6><?= $dt->JUDUL_TARGET;?></h6>
                                 </div>
-                             </div>
-                        </span>
-
-                    </a>
+                                <div class="col-lg-3">
+                                    <p>Ust. <?= $dt->NAMA_PENGUJI;?></p> 
+                                </div>
+                                <div class="col-lg-2">
+                                    <p><?= $dt->BTS_UPLOAD;?></p> 
+                                </div>
+                            </span>
+                        </a>
+                        <!-- maaf sil ini selection box nya aku pindah kebawah tag a biar bisa ganti opsinya -->
+                        <div class="col-lg-2 text-center">
+                            <div class="form-group">
+                            <select class="form-control" id="status_target" onchange="status_target(<?= $dt->ID_TARGET;?>,this)">
+                                <?php if($dt->STATUS_TARGET == 'Belum Tuntas'):?>
+                                    <option value="Belum Tuntas">Belum Tuntas</option>
+                                    <option value="Sudah Tuntas">Sudah Tuntas</option>
+                                <?php else:?>
+                                    <option value="Sudah Tuntas">Sudah Tuntas</option>
+                                    <option value="Belum Tuntas">Belum Tuntas</option>
+                                <?php endif;?>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- end pindah -->
                       
                     </div>
                     </div>

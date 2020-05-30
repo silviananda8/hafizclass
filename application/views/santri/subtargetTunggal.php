@@ -37,7 +37,7 @@
               </div>
               <div class="col-3">
                 <div class="form-group ">
-                  <select class="form-control" id="exampleFormControlSelect1">
+                  <select class="form-control" id="status_progress" onchange="id_progress(<?= $tg->ID_PROGRESS;?>,this)">
                   <?php if($tg->STATUS_PROGRESS == 'Belum Dinilai'):?>
                   <option value="Belum Dinilai">Belum Dinilai</option>
                   <option value="Remidi">Remidi</option>
