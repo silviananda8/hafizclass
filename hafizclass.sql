@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2020 at 05:15 PM
+-- Generation Time: May 30, 2020 at 09:13 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.28
 
@@ -68,7 +68,11 @@ INSERT INTO `komentar` (`ID_KOMEN`, `ID_PROGRESS`, `NAMA_PENGIRIM`, `AVATAR_PENG
 (3, 14, 'Ust. Akbar A', 'masjid-pogung-dalangan-GClYQv8I3So-unsplash.jpg', 'untuk progress ini sudah cukup baik', ''),
 (4, 15, 'kusuma', 'quran.jpg', NULL, '29-May-2020 21:56:05'),
 (5, 15, 'kusuma', 'quran.jpg', 'jika perlu diperbaiki bilang saja pak', '29-May-2020 21:56:55'),
-(6, 15, 'kusuma', 'quran.jpg', 'test', '29-May-2020 22:02:26');
+(6, 15, 'kusuma', 'quran.jpg', 'test', '29-May-2020 22:02:26'),
+(9, 15, 'Ust. Akbar A', 'masjid-pogung-dalangan-GClYQv8I3So-unsplash.jpg', 'siap', '30-May-2020 12:30:43'),
+(10, 15, 'kusuma', 'quran.jpg', 'ok', '30-May-2020 12:31:25'),
+(11, 15, 'Ust. ccc', 'car-rental1.png', 'mmantap nak', '30-May-2020 13:33:25'),
+(12, 11, 'Ust. ccc', 'car-rental1.png', 'asd', '30-May-2020 13:33:58');
 
 -- --------------------------------------------------------
 
@@ -93,9 +97,10 @@ CREATE TABLE `penguji` (
 --
 
 INSERT INTO `penguji` (`ID_PENGUJI`, `EMAIL_PENGUJI`, `PASSWORD_PENGUJI`, `NAMA_PENGUJI`, `JK_PENGUJI`, `ALAMAT_PENGUJI`, `TELEPON_PENGUJI`, `FOTO_PENGUJI`, `TINGKAT_MENGUJI`) VALUES
-(1, 'penguji@gmail.com', '54321', 'Ust. Akbar A', 'Laki-laki', 'Jl. Kedurus, Karang Pilang', 2147483647, 'masjid-pogung-dalangan-GClYQv8I3So-unsplash.jpg', 'Hafalan Jus 29 dan 30'),
-(2, 'aaa@gmail.com', 'aaa', 'Ust. aaa', NULL, '', NULL, NULL, NULL),
-(4, 'bbb@gmail.com', 'bbb', 'Ust. bbb', NULL, '', NULL, NULL, NULL);
+(1, 'penguji@gmail.com', '54321', 'Akbar ', 'Laki-laki', 'Jl. Kedurus, Karang Pilang', 2147483647, 'masjid-pogung-dalangan-t5wNqFyCkTI-unsplash.jpg', 'Hafalan Jus 29 dan 30'),
+(2, 'aaa@gmail.com', 'aaa', 'aaa', 'Perempuan', 'Jl. Mawar', 87654323, 'avatar.jpg', 'Membaca AL-Qur\'an'),
+(4, 'bbb@gmail.com', 'bbb', 'bbb', 'Perempuan', 'Jl. Sepatu', 8473649, 'car-rental2.png', 'observer'),
+(5, 'ccc@gmail.com', 'ccc', 'ccvvcv', 'Perempuan', 'Jl. kenangan', 2386916, 'car-rental1.png', 'observer ');
 
 -- --------------------------------------------------------
 
@@ -147,7 +152,7 @@ CREATE TABLE `santri` (
 --
 
 INSERT INTO `santri` (`ID_SANTRI`, `ID_PENGUJI`, `EMAIL_SANTRI`, `PASSWORD_SANTRI`, `NAMA_SANTRI`, `JK_SANTRI`, `ALAMAT_SANTRI`, `TINGKAT_PENDIDIKAN`, `TELEPON_SANTRI`, `FOTO_SANTRI`) VALUES
-(1, 1, 'santri@gmail.com', '12345', 'Ikhwan Nabila A', 'Laki-laki', 'Jl. Kamboja', 'SMP', 87152375, 'ngaji.jpg'),
+(1, 1, 'santri@gmail.com', '12345', 'Ikhwan N A', 'Laki-laki', 'Jl. Kamboja', 'SMP', 87152375, 'ngaji.jpg'),
 (2, 1, 'asha@gmail.com', 'asha', 'asha', 'Perempuan', 'Jl. Anggrek', 'SD', NULL, NULL),
 (3, 2, 'kusuma@gmail.com', '12345', 'kusuma', 'Laki-laki', 'Jl. Lurian', 'SMP', 87936826, 'quran.jpg');
 
@@ -239,13 +244,13 @@ ALTER TABLE `harian`
 -- AUTO_INCREMENT for table `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `ID_KOMEN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID_KOMEN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `penguji`
 --
 ALTER TABLE `penguji`
-  MODIFY `ID_PENGUJI` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_PENGUJI` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `progress`

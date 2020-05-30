@@ -12,7 +12,7 @@
                  <small>Deskripsi Target :</small>
                  <p><?= $dt->DESKRIPSI_TARGET;?></p>
                 <small>Nama Penguji</small>
-                <h6><?= $dt->NAMA_PENGUJI;?></h6>
+                <h6>Ust. <?= $dt->NAMA_PENGUJI;?></h6>
                 <small>Batas Waktu</small>
                 <h6><?= $dt->BTS_UPLOAD;?></h6>
                 <small>Status</small>

@@ -19,7 +19,7 @@
                 
                   <div class="col-lg-7">
                       <div class="row">
-                          <div class="col-lg-8 mt-2"><h4>Nama Santri: <?= $st->NAMA_SANTRI;?></h4></div>
+                          <div class="col-lg-8 mt-2" ><h4>Nama Santri <span style="padding-left: 57px;">:   <?= $st->NAMA_SANTRI;?></span></h4></div>  
                       </div>
                       <div class="row">
                           <div class="col-lg-4">Jenis Kelamin</div>
@@ -44,7 +44,7 @@
                       <a href="<?= site_url('santri/editDataSantri/'.$st->ID_SANTRI);?>" class="btn btn-light btn-block mb-5"> Edit Profil </a>
                       <small >Nama Penguji  </small>
                       <?php foreach($data as $dt):?>
-                      <h5><?= $dt->NAMA_PENGUJI;?> </h5>
+                      <h5>Ust. <?= $dt->NAMA_PENGUJI;?> </h5>
                       <?php endforeach;?>
                   </div>
                 </div>

@@ -38,7 +38,7 @@
         <!-- Example single danger button -->
         <div class="btn-group">
           <button type="button" class="btn text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <?= $this->session->userdata('nama_penguji');?>
+            Ust. <?= $this->session->userdata('nama_penguji');?>
           </button>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="<?= base_url('penguji/profilPenguji');?>">Profil</a>

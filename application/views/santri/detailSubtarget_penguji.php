@@ -11,7 +11,7 @@
                  <small>Deskripsi Target :</small>
                  <p><?= $tg->DESKRIPSI_TARGET;?></p>
                 <small>Nama Penguji</small>
-                <h6><?= $tg->NAMA_PENGUJI;?></h6>
+                <h6>Ust. <?= $tg->NAMA_PENGUJI;?></h6>
                 <small>Batas Waktu</small>
                 <h6><?= $tg->BTS_UPLOAD;?></h6>
                 <small>Status</small>

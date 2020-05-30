@@ -17,7 +17,7 @@
                   </div>
                   <div class="col-lg-7">
                       <div class="row">
-                          <div class="col-lg-8 mt-2"><h4>Nama Penguji: <?= $st->NAMA_PENGUJI;?></h4></div>
+                          <div class="col-lg-8 mt-2" ><h4>Nama Penguji <span style="padding-left: 41px;">:   Ust. <?= $st->NAMA_PENGUJI;?></span></h4></div>   
                       </div>
                       <div class="row">
                           <div class="col-lg-4">Jenis Kelamin</div>

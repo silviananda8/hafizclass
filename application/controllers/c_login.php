@@ -6,9 +6,14 @@ class c_login extends CI_Controller{
   }
  
 
- function auth(){
-    $email          = $this->input->post('email',TRUE);
-    $password       = $this->input->post('password',TRUE);
+ function auth($identify){
+    if($identify == 1){
+        $email          = $this->input->post('email',TRUE);
+        $password       = $this->input->post('password',TRUE);
+    }else{
+        $email          = $this->session->userdata('email');
+        $password       = $this->session->userdata('password');
+    }
 
     $cek_santri     = $this->m_login->auth_santri($email,$password);
     $cek_penguji     = $this->m_login->auth_penguji($email,$password);   
@@ -24,8 +29,8 @@ class c_login extends CI_Controller{
 
         $sesdata = array(
             'id_santri'          => $id_santri,
-            'email_santri '      => $email_santri ,
-            'password_santri'    => $password_santri,
+            'email'              => $email_santri ,
+            'password'           => $password_santri,
             'nama_santri'        => $nama_santri,
             'foto_santri'        => $foto_santri,
             'kode'               => $kode,
@@ -33,8 +38,13 @@ class c_login extends CI_Controller{
         );
 
         $this->session->set_flashdata('msg','Login Telah Berhasil Dilakukan');
-		$this->session->set_userdata($sesdata);
-        redirect('santri/index');
+        $this->session->set_userdata($sesdata);
+        
+        if($identify == 1){
+            redirect('santri/index');
+        }else{
+            redirect('santri/profilSantri');
+        }
 
 	}elseif($cek_penguji->num_rows() > 0){
         $data  = $cek_penguji->row_array();
@@ -47,18 +57,23 @@ class c_login extends CI_Controller{
 
         $sesdata = array(
             'id_penguji'          => $id_penguji,
-            'email_penguji '      => $email_penguji ,
-            'password_penguji'    => $password_penguji,
+            'email'               => $email_penguji ,
+            'password'            => $password_penguji,
             'nama_penguji'        => $nama_penguji,
             'foto_penguji'        => $foto_penguji,
-            'kode'             => $kode,
+            'kode'                => $kode,
             'logged_in' => TRUE
         );
         
         $this->session->set_flashdata('msg','Login Telah Berhasil Dilakukan');
         $this->session->set_userdata($sesdata);
         $kode = 1;
-            redirect('penguji/index/'.$kode);     
+
+        if($identify == 1){
+            redirect('penguji/index/'.$kode);
+        }else{
+            redirect('penguji/profilPenguji');
+        }    
 
   }else{
         $this->session->set_flashdata('msg','Username Atau Password Salah');

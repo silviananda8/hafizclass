@@ -49,7 +49,7 @@
                                         <h6><?= $ps->JUDUL_PROGRESS;?></h6> 
                                     </div>
                                     <div class="col-lg-2">
-                                        <p><?= $ps->NAMA_PENGUJI;?></p> 
+                                        <p>Ust. <?= $ps->NAMA_PENGUJI;?></p> 
                                     </div>
                                     <div class="col-lg-2 text-center">
                                         <p> <?= $ps->STATUS_PROGRESS;?></p>
@@ -84,7 +84,7 @@
                                         <h6><?= $ps->JUDUL_PROGRESS;?></h6> 
                                     </div>
                                     <div class="col-lg-2">
-                                        <p><?= $ps->NAMA_PENGUJI;?></p> 
+                                        <p>Ust. <?= $ps->NAMA_PENGUJI;?></p> 
                                     </div>
                                     <div class="col-lg-2 text-center">
                                         <p> <?= $ps->STATUS_PROGRESS;?></p>

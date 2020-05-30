@@ -60,7 +60,7 @@
                                 <h6><?= $dt->JUDUL_TARGET;?></h6>
                              </div>
                              <div class="col-lg-3">
-                                <p><?= $dt->NAMA_PENGUJI;?></p> 
+                                <p>Ust. <?= $dt->NAMA_PENGUJI;?></p> 
                              </div>
                              <div class="col-lg-2">
                                 <p><?= $dt->BTS_UPLOAD;?></p> 
@@ -125,7 +125,7 @@
                         <label for="id_penguji">Daftar Ustadz</label>
                         <select class="form-control" id="id_penguji" name="id_penguji">
                         <?php foreach($penguji as $pj):?>
-                            <option value="<?= $pj->ID_PENGUJI;?>"><?= $pj->NAMA_PENGUJI;?></option>
+                            <option value="<?= $pj->ID_PENGUJI;?>">Ust. <?= $pj->NAMA_PENGUJI;?></option>
                         <?php endforeach;?>
                         </select>
                     </div>

@@ -6,7 +6,7 @@
             <div class="card card-shadow mt-5 mb-5">
               <div class="card-body">
                 <h6 class="text-center mb-5">Silahkan masukkan email dan kata sandi <br> yang sudah terdaftarkan</h6>
-                <form action="<?php echo site_url('c_login/auth');?>" method='post'>
+                <form action="<?php echo site_url('c_login/auth/'.$identify=1);?>" method='post'>
                   <div class="form-group">
                     <label for="email">Alamat email</label>
                     <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="nama@gmail.com" required>

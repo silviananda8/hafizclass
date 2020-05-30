@@ -24,8 +24,14 @@ class Penguji extends CI_Controller {
 	}
 
 	public function subtarget($id_target){
+		$data['target'] = $this->m_penguji->subTargetbyTarget($id_target)->result();
+
+		$this->load->model('m_komen');
+		$data['komen'] 		= $this->m_komen->getKomenByTarget($id_target)->result();
+		$data['progress'] 	= $this->m_komen->getProgressByTarget($id_target)->result();
+
 		$this->load->view('templates/headerPenguji');
-		$this->load->view('santri/detailSubtarget_penguji');
+		$this->load->view('santri/detailSubtarget_penguji',$data);
 		$this->load->view('santri/subtarget_penguji');
 		$this->load->view('templates/footer');
 	}
@@ -69,13 +75,13 @@ class Penguji extends CI_Controller {
 	}
 
 	function prosesEditPenguji(){
-		$id = $this->input->post('id_penguji');
+		$id 		= $this->session->userdata('id_penguji');
 
         $foto   = $_FILES['foto'];
         if($foto=''){}else{
             $config['upload_path']      = './assets/uploads/avatar/';
             $config['allowed_types']    = 'jpg|jpeg|gif|png';
-            $config['max_size']         = 4096;
+            $config['max_size']         = 2048;
 
             $this->load->library('upload');
             $this->upload->initialize($config);
@@ -97,7 +103,7 @@ class Penguji extends CI_Controller {
 		);
 
         $this->m_penguji->updatePenguji($data, $id);
-        redirect('penguji/index');
+        redirect('c_login/auth/'.$identify=2);
 	}
 	
 	public function profilSantri($id_santri){
@@ -159,7 +165,7 @@ class Penguji extends CI_Controller {
 		$data = array(
 			'EMAIL_PENGUJI'	    	=> $this->input->post('email'),
 			'PASSWORD_PENGUJI'	    => $this->input->post('password'),
-			'NAMA_PENGUJI'			=> "Ust. ".$this->input->post('nama')
+			'NAMA_PENGUJI'			=> $this->input->post('nama')
 		);
 
 		$this->m_penguji->regisPenguji($data);

@@ -12,12 +12,12 @@ class c_komen extends CI_Controller {
         $id_target      = $this->input->post('id_target');
         $id_progress    = $this->input->post('id_progress');
 
-        if($kode == "penguji"){
-            $avatar = $this->session->userdata('foto_penguji');
-            $nama   = $this->session->userdata('nama_penguji');
-        }else{
+        if($kode == "santri"){
             $avatar = $this->session->userdata('foto_santri');
             $nama   = $this->session->userdata('nama_santri');
+        }else{
+            $avatar = $this->session->userdata('foto_penguji');
+            $nama   = $this->session->userdata('nama_penguji');
         }
 
         $data = array(
@@ -32,6 +32,8 @@ class c_komen extends CI_Controller {
         $this->m_komen->tambahKomen($data);
         if($kode == "penguji"){
             redirect('penguji/subtargetTunggal/'.$id_progress);
+        }elseif($kode == "penguji2"){
+            redirect('penguji/subtarget/'.$id_target);
         }else{
             redirect('santri/subTarget/'.$id_target);
         }

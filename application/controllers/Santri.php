@@ -89,7 +89,7 @@ class Santri extends CI_Controller {
 		);
 
         $this->m_santri->updateSantri($data, $id);
-        redirect('santri/index');
+        redirect('c_login/auth/'.$identify=2);
 	}
 
 	public function subTarget($id_target){

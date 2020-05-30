@@ -103,6 +103,14 @@ class m_penguji extends CI_Model{
         return $this->db->get();
     }
 
+    function subTargetByTarget($id_target){
+        $this->db->select('target.*, penguji.NAMA_PENGUJI, DATE_FORMAT(harian.TANGGAL_HARIAN, "%d %M %Y") AS TANGGAL_HARIAN,DATE_FORMAT(target.BATAS_UPLOAD, "%d %M %Y") AS BTS_UPLOAD');
+        $this->relasi();
+        $this->db->where('target.ID_TARGET',$id_target);
+        $this->db->limit(1);
+        return $this->db->get();
+    }
+
     function relasi(){
         $this->db->from('santri, penguji, target, harian, progress');
         $this->db->where('santri.ID_SANTRI = target.ID_SANTRI');
