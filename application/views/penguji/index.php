@@ -96,7 +96,6 @@
                  </div>
                 <?php endforeach;
                 endif;?>
-                
 
                  <!-- end list target -->
               </div>

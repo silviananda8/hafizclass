@@ -110,6 +110,11 @@ class Santri extends CI_Controller {
 
 	function pengumpulanTugas(){
 		$id_target = $this->input->post('id_target');
+		if($id_target == null){
+			$this->session->set_flashdata('msg','Tidak Ada Target Untuk Saat Ini');
+			redirect('santri/index');
+			die();
+		}
 		$tanggal_harian = $this->input->post('tanggal_harian');
 		$audio   = $_FILES['audio'];
         if($audio=''){}else{

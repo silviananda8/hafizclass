@@ -17,7 +17,7 @@ class c_komen extends CI_Controller {
             $nama   = $this->session->userdata('nama_santri');
         }else{
             $avatar = $this->session->userdata('foto_penguji');
-            $nama   = $this->session->userdata('nama_penguji');
+            $nama   = "Ust. ".$this->session->userdata('nama_penguji');
         }
 
         $data = array(

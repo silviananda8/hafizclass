@@ -22,12 +22,25 @@ class m_penguji extends CI_Model{
 		$this->db->update('penguji', $data);
     }
 
+    // daftar user
     function semuaSantri(){
         $this->db->select('santri.*,penguji.NAMA_PENGUJI');
         $this->db->from('santri, penguji');
         $this->db->where('santri.ID_PENGUJI = penguji.ID_PENGUJI');
         $query = $this->db->get();
         return $query;
+    }
+
+    function semuaPenguji(){
+        return $this->db->get('penguji');
+    }
+
+    function listSantriByPenguji($id_penguji){
+        $this->db->select('santri.*, penguji.NAMA_PENGUJI');
+        $this->db->from('santri, penguji');
+        $this->db->where('santri.ID_PENGUJI = penguji.ID_PENGUJI');
+        $this->db->where('penguji.ID_PENGUJI',$id_penguji);
+        return $this->db->get();
     }
 
     function profilSantri($id_santri){

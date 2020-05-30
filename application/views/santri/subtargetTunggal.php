@@ -67,7 +67,7 @@
             <h5>Judul Tugas : <small> <?= $tg->JUDUL_PROGRESS;?></small></h5>
             <div class="h-divider"></div>
             <p>Deskripsi Tugas : <?= $tg->DESKRIPSI_PROGRESS;?></p>
-            <button class="Btn btn-light btn-block btn-lg">rekaman</button>
+            <audio class="form-control" controls src="<?= base_url() ?>assets/uploads/audio/<?= $tg->AUDIO;?>"></audio>
             <div class="h-divider mt-4 mb-1 "></div>
             <p class="text-center"><?= $tg->JENIS_PROGRESS;?></p>
             <div class="h-divider mt-2"></div>
