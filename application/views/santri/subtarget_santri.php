@@ -83,11 +83,11 @@
         <!-- Kirim Komentar -->
           <div class="row">
             <div class="col-2">
-               <img src="<?= base_url() ?>assets/uploads/avatar/<?= $pg->FOTO_SANTRI;?>" alt="..." class="rounded-circle img-fluid mr-3 float-right tugas-image" >
+               <img src="<?= base_url() ?>assets/uploads/avatar/<?= $this->session->userdata('foto_santri');?>" alt="..." class="rounded-circle img-fluid mr-3 float-right tugas-image" >
             </div>
             <div class="col-lg posisi-image" >
                   <div class="form-group pr-2">
-                    <form action="<?php echo site_url('c_komen/kirimKomen');?>" method="post">
+                    <form action="<?php echo site_url('c_komen/kirimKomen/'.$kode="santri");?>" method="post">
                       <input type="text" class="form-control" id="isi_komen" name="isi_komen" placeholder="Tulis Komentar">
                       <input type="text" id="id_progress" name="id_progress" value="<?= $pg->ID_PROGRESS;?>" hidden>
                       <?php foreach($data as $dt):?>

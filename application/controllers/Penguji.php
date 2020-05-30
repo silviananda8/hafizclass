@@ -8,11 +8,19 @@ class Penguji extends CI_Controller {
         $this->load->model('m_penguji');
     }
 
-	public function index(){
-		$this->load->view('templates/headerPenguji');
-		$this->load->view('penguji/index');
-		$this->load->view('templates/footer');
+	public function index($kode){
+		$id_penguji 		= $this->session->userdata('id_penguji');
+		$data['kode']		= $kode;
+		if($kode == 1){
+			$data['p_saya']	 = $this->m_penguji->pengumpulanSaya($id_penguji)->result();
+			
+		}else{
+			$data['p_semua']	 = $this->m_penguji->pengumpulanSemua()->result();
+		}
 
+		$this->load->view('templates/headerPenguji');	
+		$this->load->view('penguji/index',$data);
+		$this->load->view('templates/footer');
 	}
 
 	public function subtarget($id_target){
@@ -21,9 +29,13 @@ class Penguji extends CI_Controller {
 		$this->load->view('santri/subtarget_penguji');
 		$this->load->view('templates/footer');
 	}
-	public function subtargetTunggal(){
+
+	public function subtargetTunggal($id_progress){
+		$data['target'] = $this->m_penguji->subtargetTunggal($id_progress)->result();
+		$data['komen'] 	= $this->m_penguji->getKomenByProgress($id_progress)->result();
+
 		$this->load->view('templates/headerPenguji');
-		$this->load->view('santri/detailSubtarget_penguji');
+		$this->load->view('santri/detailSubtarget_penguji',$data);
 		$this->load->view('santri/subtargetTunggal');
 		$this->load->view('templates/footer');
 	}
@@ -38,13 +50,15 @@ class Penguji extends CI_Controller {
 		$this->load->view('templates/footer');
 
 	}
-		public function profilPenguji_view(){
+		
+	public function profilPenguji_view(){
 		$this->load->view('templates/headerPenguji');
 		$this->load->view('penguji/dataPenguji_view');
 		$this->load->view('penguji/daftarSantri');
 		$this->load->view('templates/footer');
 
 	}
+
 	public function editDataPenguji($id_penguji){
 		$data['penguji'] = $this->m_penguji->getPenguji($id_penguji)->result();
 
@@ -86,7 +100,7 @@ class Penguji extends CI_Controller {
         redirect('penguji/index');
 	}
 	
-		public function profilSantri($id_santri){
+	public function profilSantri($id_santri){
 		$data['data'] = $this->m_penguji->profilSantri($id_santri)->result();
 		$data['list'] = $this->m_penguji->listPengujiBySantri($id_santri)->result();
 		$data['target'] = $this->m_penguji->listTargetBySantri($id_santri)->result();
@@ -99,7 +113,8 @@ class Penguji extends CI_Controller {
 		$this->load->view('templates/footer');
 
 	}
-		public function semuaSantri(){
+
+	public function semuaSantri(){
 		$data['data'] = $this->m_penguji->semuaSantri()->result();
 		
 		$this->load->view('templates/headerPenguji');

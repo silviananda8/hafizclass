@@ -32,7 +32,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ml-auto">
-        <a class="nav-item nav-link text-white" href="<?= base_url('penguji');?>">Beranda</a>
+        <a class="nav-item nav-link text-white" href="<?= site_url('penguji/index/'.$kd=1);?>">Beranda</a>
         <a class="nav-item nav-link text-white" href="<?= base_url('penguji/semuaPenguji');?>">Daftar Penguji</a>
         <a class="nav-item nav-link text-white" href="<?= base_url('penguji/semuaSantri');?>">Daftar Santri</a>
         <!-- Example single danger button -->

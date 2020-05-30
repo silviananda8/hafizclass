@@ -50,14 +50,15 @@ class c_login extends CI_Controller{
             'email_penguji '      => $email_penguji ,
             'password_penguji'    => $password_penguji,
             'nama_penguji'        => $nama_penguji,
-            'foto_penguji'        => $foto_santri,
+            'foto_penguji'        => $foto_penguji,
             'kode'             => $kode,
             'logged_in' => TRUE
         );
         
         $this->session->set_flashdata('msg','Login Telah Berhasil Dilakukan');
         $this->session->set_userdata($sesdata);
-            redirect('penguji/index');     
+        $kode = 1;
+            redirect('penguji/index/'.$kode);     
 
   }else{
         $this->session->set_flashdata('msg','Username Atau Password Salah');
