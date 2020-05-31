@@ -54,4 +54,4 @@
 
 <!-- <div class="bawah-navbar"></div>
  --><!-- end navbar -->
- <section class="bg-light pt-2 pb-5">
+ <section class="bg-light pb-5">
