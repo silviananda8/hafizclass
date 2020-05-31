@@ -103,7 +103,17 @@ class Penguji extends CI_Controller {
             'FOTO_PENGUJI'          => $foto,
 		);
 
-        $this->m_penguji->updatePenguji($data, $id);
+		$this->m_penguji->updatePenguji($data, $id);
+		
+		$nama_lama = "Ust. ".$this->session->userdata('nama_penguji');
+		$foto_lama = $this->session->userdata('foto_penguji');
+		$komen = array(
+			'NAMA_PENGIRIM'		=> $this->input->post('nama'),
+			'AVATAR_PENGIRIM'	=> $foto,
+		);
+		$this->load->model('m_komen');
+		$this->m_komen->updateProfilKomen($nama_lama,$foto_lama,$komen);
+
         redirect('c_login/auth/'.$identify=2);
 	}
 	

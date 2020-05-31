@@ -1,4 +1,4 @@
-    <?php if(isset($progress)):?>
+    <?php if($progress != null):?>
     <?php foreach($progress as $pg):?>
       
         <div class="card card-shadow mb-3 mt-4">

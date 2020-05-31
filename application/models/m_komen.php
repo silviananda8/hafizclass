@@ -26,5 +26,11 @@ class m_komen extends CI_Model{
     function tambahKomen($data){
         $this->db->insert('komentar',$data);
     }
+
+    function updateProfilKomen($nama_lama,$foto_lama,$komen){
+        $this->db->where('NAMA_PENGIRIM', $nama_lama);
+        $this->db->where('AVATAR_PENGIRIM', $foto_lama);
+		$this->db->update('komentar', $komen);
+    }
  
 }
