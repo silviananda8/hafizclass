@@ -54,6 +54,7 @@ class Penguji extends CI_Controller {
 		$id_penguji 		= $this->session->userdata('id_penguji');
 		$data['penguji'] 	= $this->m_penguji->getPenguji($id_penguji)->result();
 		$data['santri'] 	= $this->m_penguji->listSantriByPenguji($id_penguji)->result();
+		$data['kode_penguji'] = "ori";
 		
 		$this->load->view('templates/headerPenguji');
 		$this->load->view('penguji/dataPenguji',$data);
@@ -62,9 +63,13 @@ class Penguji extends CI_Controller {
 
 	}
 		
-	public function profilPenguji_view(){
+	public function profilPenguji_view($id_penguji){
+		$data['penguji'] 	  = $this->m_penguji->getPenguji($id_penguji)->result();
+		$data['santri'] 	  = $this->m_penguji->listSantriByPenguji($id_penguji)->result();
+		$data['kode_penguji'] = "observer";
+
 		$this->load->view('templates/headerPenguji');
-		$this->load->view('penguji/dataPenguji_view');
+		$this->load->view('penguji/dataPenguji',$data);
 		$this->load->view('penguji/daftarSantri');
 		$this->load->view('templates/footer');
 

@@ -22,7 +22,8 @@
                  <div class="row mt-2">
                     <div class="col-lg-12">       
                      <div class="list-group">
-                      <div class="list-group-item list-group-item-action shadow-sm">
+                     <a href="<?= site_url('penguji/profilSantri/'.$st->ID_SANTRI);?>" class="list-group-item list-group-item-action">
+                      <div class="shadow-sm">
                         <span class="row">
                             <div class="col-lg-7 text-left">
                                 <div class="row">
@@ -41,6 +42,7 @@
                              </div>
                         </span>
                     </div>
+                    </a>
                       
                     </div>
                     </div>

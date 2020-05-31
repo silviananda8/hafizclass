@@ -37,8 +37,16 @@
                       </div>
                   </div>
                   <div class="col-lg-2">
-                  
-                      <a href="<?= site_url('penguji/editDataPenguji/'.$st->ID_PENGUJI);?>" class="btn btn-light btn-block mb-5"><i class="fas fa-user-edit icon-green"></i> Edit Profil </a>
+
+                    <?php 
+                    if($kode_penguji == "observer"):
+                    else:?>
+                        <a href="<?= site_url('penguji/editDataPenguji/'.$st->ID_PENGUJI);?>" class="btn btn-light btn-block mb-5">
+                        <i class="fas fa-user-edit icon-green"></i> 
+                        Edit Profil 
+                        </a>
+                    <?php endif;?>
+
                   </div>
                 </div>
               </div>
