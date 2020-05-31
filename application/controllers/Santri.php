@@ -10,14 +10,14 @@ class Santri extends CI_Controller {
 
 	public function index(){
 		$id_santri 		= $this->session->userdata('id_santri');
-		$data['data']	= $this->m_santri->targetBaru($id_santri)->result();
+		$data['target']	= $this->m_santri->targetBaru($id_santri)->result();
 		
 		$id_target = '';
-		foreach($data['data'] as $dt){
+		foreach($data['target'] as $dt){
 			$id_target = $dt->ID_TARGET;
 		}
 
-		if($id_target != ''){
+		if($id_target != null){
 			$this->load->model('m_komen');
 			$data['komen'] 		= $this->m_komen->getKomenByTarget($id_target)->result();
 			$data['progress'] 	= $this->m_komen->getProgressByTarget($id_target)->result();
@@ -43,10 +43,28 @@ class Santri extends CI_Controller {
 		//list target santri
 		$data['list'] = $this->m_santri->listTarget($id_santri)->result();
 
+		//kalender absen si santri
+		$data_kalender	= $this->m_santri->kalenderAbsenBySantri($id_santri);
+
+		$kalender = array();
+		foreach ($data_kalender as $kd => $val){
+			$kalender[] = array(
+				'id' 			=> intval($val->ID_PROGRESS), 
+				'title' 		=> $val->JUDUL_PROGRESS, 
+				'description' 	=> trim($val->DESKRIPSI_PROGRESS), 
+				'start' 		=> date_format( date_create($val->TANGGAL_HARIAN) ,"Y-m-d"),
+				'end' 			=> date_format( date_create($val->TANGGAL_HARIAN) ,"Y-m-d"),
+				'color'			=> "#0071c5",
+				'kode_user'		=> "santri"
+			);
+		}
+		$kldr = array();
+		$kldr['get_data']	= json_encode($kalender);
+
 		$this->load->view('templates/headerSantri');
 		$this->load->view('santri/dataSantri',$data);
 		$this->load->view('santri/targetSantri');
-		$this->load->view('santri/kalendarAbsen');
+		$this->load->view('santri/kalendarAbsen',$kldr);
 		$this->load->view('templates/footer');
 
 	}
@@ -127,7 +145,8 @@ class Santri extends CI_Controller {
 			redirect('santri/index');
 			die();
 		}
-		$tanggal_harian = $this->input->post('tanggal_harian');
+		$date = date_create($this->input->post('tanggal_harian'));
+		$tanggal_harian = date_format($date, "Y-m-d");
 		$audio   = $_FILES['audio'];
         if($audio=''){}else{
             $config['upload_path']      = './assets/uploads/audio/';
@@ -160,7 +179,7 @@ class Santri extends CI_Controller {
 				'JUDUL_PROGRESS' 	=> $this->input->post('judul_progress'),
 				'DESKRIPSI_PROGRESS'=> $this->input->post('deskripsi_progress'),
 				'JENIS_PROGRESS'	=> $this->input->post('jenis_progress'),
-				'STATUS_HARIAN'		=> "Belum Dinilai",
+				'STATUS_PROGRESS'	=> "Belum Dinilai",
 				'AUDIO'				=> $audio
 			);
 			$this->session->set_flashdata('msg','Data berhasil Ditambahkan');
@@ -187,6 +206,7 @@ class Santri extends CI_Controller {
 				'JUDUL_PROGRESS' 	=> $this->input->post('judul_progress'),
 				'DESKRIPSI_PROGRESS'=> $this->input->post('deskripsi_progress'),
 				'JENIS_PROGRESS'	=> $this->input->post('jenis_progress'),
+				'STATUS_PROGRESS'	=> "Belum Dinilai",
 				'AUDIO'				=> $audio
 			);
 
@@ -210,4 +230,13 @@ class Santri extends CI_Controller {
 		echo json_encode($result);
 	}
 
+	public function subtargetTunggal($id_progress){
+		$data['target'] = $this->m_santri->subtargetTunggal($id_progress)->result();
+		$data['komen'] 	= $this->m_santri->getKomenByProgress($id_progress)->result();
+
+		$this->load->view('templates/headerSantri');
+		$this->load->view('santri/detailSubtarget_santri',$data);
+		$this->load->view('santri/subtargetTunggal');
+		$this->load->view('templates/footer');
+	}
 }

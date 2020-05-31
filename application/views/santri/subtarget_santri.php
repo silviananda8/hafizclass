@@ -1,4 +1,4 @@
-    <?php if($progress != null):?>
+    <?php if(isset($progress)):?>
     <?php foreach($progress as $pg):?>
       
         <div class="card card-shadow mb-3 mt-4">
@@ -95,7 +95,7 @@
                       <div class="col-10">
                         <input type="text" class="form-control" id="isi_komen" name="isi_komen" placeholder="Tulis Komentar">
                       <input type="text" id="id_progress" name="id_progress" value="<?= $pg->ID_PROGRESS;?>" hidden>
-                      <?php foreach($data as $dt):?>
+                      <?php foreach($target as $dt):?>
                         <input type="text" id="id_target" name="id_target" value="<?= $dt->ID_TARGET;?>" hidden>
                       <?php endforeach;?>
                       </div>

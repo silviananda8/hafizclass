@@ -83,7 +83,7 @@
         <!-- Kirim Komentar -->
           <div class="row">
             <div class="col-2">
-               <img src="<?= base_url() ?>assets/uploads/avatar/<?= $this->session->userdata('foto_penguji');?>" alt="..." class="rounded-circle img-fluid mr-3 float-right tugas-image" >
+            <img src="<?= base_url() ?>assets/uploads/avatar/<?= $this->session->userdata('foto_penguji');?>" alt="..." class="rounded-circle img-fluid mr-3 float-right tugas-image" >
             </div>
             <div class="col-lg posisi-image" >
                   <div class="form-group pr-2">

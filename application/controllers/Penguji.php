@@ -123,10 +123,28 @@ class Penguji extends CI_Controller {
 		$data['target'] = $this->m_penguji->listTargetBySantri($id_santri)->result();
 		$data['penguji'] = $this->m_penguji->listPenguji()->result();
 
+		//kalender absen si santri
+		$data_kalender	= $this->m_penguji->kalenderAbsenBySantri($id_santri);
+
+		$kalender = array();
+		foreach ($data_kalender as $kd => $val){
+			$kalender[] = array(
+				'id' 			=> intval($val->ID_PROGRESS), 
+				'title' 		=> $val->JUDUL_PROGRESS, 
+				'description' 	=> trim($val->DESKRIPSI_PROGRESS), 
+				'start' 		=> date_format( date_create($val->TANGGAL_HARIAN) ,"Y-m-d"),
+				'end' 			=> date_format( date_create($val->TANGGAL_HARIAN) ,"Y-m-d"),
+				'color'			=> "#0071c5",
+				'kode_user'		=> "penguji"
+			);
+		}
+		$kldr = array();
+		$kldr['get_data']	= json_encode($kalender);
+
 		$this->load->view('templates/headerPenguji');
 		$this->load->view('santri/dataSantri_penguji',$data);
 		$this->load->view('santri/targetSantri_penguji');
-		$this->load->view('santri/kalendarAbsen');
+		$this->load->view('santri/kalendarAbsen',$kldr);
 		$this->load->view('templates/footer');
 
 	}

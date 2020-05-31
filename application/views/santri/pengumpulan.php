@@ -47,7 +47,7 @@
                     </div>
                 </div>
 
-                <?php foreach($data as $dt):?>
+                <?php foreach($target as $dt):?>
                 <input type="text" class="form-control" id="id_target" name="id_target" value="<?= $dt->ID_TARGET;?>" hidden>
                 <?php endforeach;?>
 
