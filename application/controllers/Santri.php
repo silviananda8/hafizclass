@@ -61,7 +61,8 @@ class Santri extends CI_Controller {
 	}
 
 	function prosesEditSantri(){
-		$id = $this->input->post('id_santri');
+		$id 	= $this->input->post('id_santri');
+		$nama	= $this->input->post('nama');
 
         $foto   = $_FILES['foto'];
         if($foto=''){}else{
@@ -80,7 +81,7 @@ class Santri extends CI_Controller {
         }
 
 		$data = array(
-			'NAMA_SANTRI'	    	=> $this->input->post('nama'),
+			'NAMA_SANTRI'	    	=> $nama,
 			'JK_SANTRI'				=> $this->input->post('jenis_kelamin'),
 			'TINGKAT_PENDIDIKAN'	=> $this->input->post('tingkat_pendidikan'),
 			'ALAMAT_SANTRI'	    	=> $this->input->post('alamat'),
@@ -88,7 +89,18 @@ class Santri extends CI_Controller {
             'FOTO_SANTRI'           => $foto,
 		);
 
-        $this->m_santri->updateSantri($data, $id);
+		$this->m_santri->updateSantri($data, $id);
+		
+		//update tabel komen untuk memperbaharui data
+		$nama_lama = $this->session->userdata('nama_santri');
+		$foto_lama = $this->session->userdata('foto_santri');
+		$komen = array(
+			'NAMA_PENGIRIM'		=> $nama,
+			'AVATAR_PENGIRIM'	=> $foto,
+		);
+		$this->load->model('m_komen');
+		$this->m_komen->updateProfilKomen($nama_lama,$foto_lama,$komen);
+
         redirect('c_login/auth/'.$identify=2);
 	}
 
