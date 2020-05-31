@@ -1,4 +1,13 @@
-    <?php if(isset($progress)):?>
+      <!-- alert tidak ada progress -->
+      <?php if($this->session->flashdata('tidak ada progress')== true):?>
+        <div class="alert alert-danger alert-dismissible fade show mt-5" role="alert">
+          <?= $this->session->flashdata('tidak ada progress'); ?>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <?php else:?>
+      <!-- end alert tidak ada progress -->
     <?php foreach($progress as $pg):?>
       
         <div class="card card-shadow mb-3 mt-4">

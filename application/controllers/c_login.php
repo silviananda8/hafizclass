@@ -76,8 +76,8 @@ class c_login extends CI_Controller{
         }    
 
   }else{
-        $this->session->set_flashdata('msg','Username Atau Password Salah');
-        redirect('home/index');
+        $this->session->set_flashdata('msg','Email Atau Password Salah');
+        redirect('home/login');
     }
 	}
 

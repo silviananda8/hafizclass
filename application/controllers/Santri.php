@@ -23,6 +23,10 @@ class Santri extends CI_Controller {
 			$data['progress'] 	= $this->m_komen->getProgressByTarget($id_target)->result();
 		}
 
+		if($id_target == null){
+			$this->session->set_flashdata('tidak ada progress','Tidak ada Progress Untuk Target Ini');
+		}else{}
+
 		$this->load->view('templates/headerSantri');
 		$this->load->view('santri/detailSubtarget_santri',$data);
 		$this->load->view('santri/pengumpulan');
@@ -124,12 +128,16 @@ class Santri extends CI_Controller {
 
 	public function subTarget($id_target){
 		$id_santri 		= $this->session->userdata('id_santri');
-		$data['data']	= $this->m_santri->listTargetByTarget($id_target,$id_santri)->result();
+		$data['target']	= $this->m_santri->listTargetByTarget($id_target,$id_santri)->result();
 		$data['santri']	= $this->m_santri->getSantri($id_santri)->result();
 
 		$this->load->model('m_komen');
 		$data['komen'] 		= $this->m_komen->getKomenByTarget($id_target)->result();
 		$data['progress'] 	= $this->m_komen->getProgressByTarget($id_target)->result();
+
+		if($data['progress'] == null){
+			$pesan = $this->session->set_flashdata('tidak ada progress','Tidak ada Progress Untuk Target Ini');
+		}else{}
 
 		$this->load->view('templates/headerSantri');
 		$this->load->view('santri/detailSubtarget_santri',$data);

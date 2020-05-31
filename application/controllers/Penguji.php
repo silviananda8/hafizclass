@@ -30,6 +30,10 @@ class Penguji extends CI_Controller {
 		$data['komen'] 		= $this->m_komen->getKomenByTarget($id_target)->result();
 		$data['progress'] 	= $this->m_komen->getProgressByTarget($id_target)->result();
 
+		if($data['progress'] == null){
+			$this->session->set_flashdata('msg','Tidak ada Progress Untuk Target ini');
+		}else{}
+
 		$this->load->view('templates/headerPenguji');
 		$this->load->view('santri/detailSubtarget_penguji',$data);
 		$this->load->view('santri/subtarget_penguji');
