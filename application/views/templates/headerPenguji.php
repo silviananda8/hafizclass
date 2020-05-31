@@ -32,19 +32,24 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ml-auto">
-        <a class="nav-item nav-link text-white" href="<?= site_url('penguji/index/'.$kd=1);?>">Beranda</a>
-        <a class="nav-item nav-link text-white" href="<?= base_url('penguji/semuaPenguji');?>">Daftar Penguji</a>
-        <a class="nav-item nav-link text-white" href="<?= base_url('penguji/semuaSantri');?>">Daftar Santri</a>
+        <a class="nav-item nav-link text-white mr-3" href="<?= site_url('penguji/index/'.$kd=1);?>"><i class="fas fa-clipboard-list"></i>
+  Beranda</a>
+        <a class="nav-item nav-link text-white mr-3" href="<?= base_url('penguji/semuaPenguji');?>"><i class="fas fa-chalkboard-teacher"></i>
+  Daftar Penguji</a>
+        <a class="nav-item nav-link text-white mr-3" href="<?= base_url('penguji/semuaSantri');?>"><i class="fas fa-user-graduate"></i>
+  Daftar Santri</a>
         <!-- Example single danger button -->
         <div class="btn-group">
-          <button type="button" class="btn text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button type="button" class="btn text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-house-user"></i>
+  
             Ust. <?= $this->session->userdata('nama_penguji');?>
           </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="<?= base_url('penguji/profilPenguji');?>">Profil</a>
-            <a class="dropdown-item" href="<?= base_url('penguji/tambahSantri');?>">Tambah Santri</a>
+            <a class="dropdown-item" href="<?= base_url('penguji/profilPenguji');?>"><i class="fas fa-user-alt">  </i>  Profil Saya</a>
+            <a class="dropdown-item" href="<?= base_url('penguji/tambahSantri');?>"><i class="fas fa-user-graduate"></i>
+  Tambah Santri</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="<?= base_url('c_login/logout');?>">Keluar</a>
+            <a class="dropdown-item" href="<?= base_url('c_login/logout');?>"><i class="fas fa-sign-out-alt"></i>  Keluar</a>
           </div>
         </div>
       </div>
@@ -52,6 +57,6 @@
   </div>
 </nav>
 
-
 <!-- <div class="bawah-navbar"></div>
  --><!-- end navbar -->
+ <section class="bg-light pt-2 pb-5">

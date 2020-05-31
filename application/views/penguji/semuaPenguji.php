@@ -6,7 +6,7 @@
         <div class="col-lg-12">
             <div class="card mt-5">
               <div class="card-body">
-                 <h6>Daftar Semua Penguji</h6>
+                 <h5 class="icon-green">Daftar Semua Penguji</h5>
                  <div class="h-divider"></div>
                  <!-- list target -->
                  <div class="row mt-4 ">
@@ -21,7 +21,7 @@
                  <?php foreach($penguji as $pj):?>
                  <div class="row mt-2">
                     <div class="col-lg-12 mb-2">       
-                     <div class="list-group card-shadow">
+                     <div class="list-group shadow-sm">
                       <div class="list-group-item list-group-item-action">
                         <span class="row">
                             <div class="col-lg-5 text-left">

@@ -8,7 +8,7 @@
         <div class="col-lg-11">
             <div class="card card-shadow mt-4">
               <div class="card-body">
-                 <h5>Profil Santri</h5>
+                 <h5 class="icon-green">Profil Santri</h5>
                  <div class="h-divider mb-4"></div>
                  <div class="row justify-content-center">
                   <div class="col-lg-2 mr-4">
@@ -37,7 +37,7 @@
                   </div>
                   <div class="col-lg-2">
                       <form action="">
-                        <div class="form-group">
+                        <div class="form-group"><i class="fas fa-user-edit icon-green mb-2"> Penguji</i><small>
                           <select class="form-control" id="nama_penguji" onchange="updatePenguji(<?= $dt->ID_SANTRI;?>,this)">
                               <option value="<?= $dt->ID_PENGUJI;?>"> Ust. <?= $dt->NAMA_PENGUJI;?></option>
                             <?php foreach($list as $lt):?>

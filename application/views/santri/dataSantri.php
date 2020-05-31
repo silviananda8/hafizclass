@@ -9,7 +9,7 @@
         <div class="col-lg-11">
             <div class="card card-shadow mt-4">
               <div class="card-body">
-                 <h5>Profil Santri</h5>
+                 <h5 class="icon-green">Profil Santri</h5>
                  <div class="h-divider mb-4"></div>
                  <div class="row justify-content-center">
                   <div class="col-lg-2 mr-4">
@@ -19,7 +19,7 @@
                 
                   <div class="col-lg-7">
                       <div class="row">
-                          <div class="col-lg-8 mt-2" ><h4>Nama Santri <span style="padding-left: 57px;">:   <?= $st->NAMA_SANTRI;?></span></h4></div>  
+                          <div class="col-lg-8 mt-2" > <h4> <?= $st->NAMA_SANTRI;?></h4></div>  
                       </div>
                       <div class="row">
                           <div class="col-lg-4">Jenis Kelamin</div>
@@ -41,7 +41,7 @@
                 
 
                   <div class="col-lg-2">
-                      <a href="<?= site_url('santri/editDataSantri/'.$st->ID_SANTRI);?>" class="btn btn-light btn-block mb-5"> Edit Profil </a>
+                      <a href="<?= site_url('santri/editDataSantri/'.$st->ID_SANTRI);?>" class="btn btn-light btn-block mb-5"><i class="fas fa-user-edit icon-green"></i> Edit Profil </a>
                       <small >Nama Penguji  </small>
                       <?php foreach($data as $dt):?>
                       <h5>Ust. <?= $dt->NAMA_PENGUJI;?> </h5>

@@ -52,7 +52,7 @@
                  <?php foreach($target as $dt):?>
                  <div class="row mt-2">
                     <div class="col-lg-12">       
-                     <div class="list-group">
+                     <div class="list-group shadow-sm">
                         <a href="<?= site_url('penguji/subtarget/'.$dt->ID_TARGET);?>" class="list-group-item list-group-item-action">
                             <span class="row">
                                 <div class="col-lg-5 text-left">
@@ -64,8 +64,7 @@
                                 <div class="col-lg-2">
                                     <p><?= $dt->BTS_UPLOAD;?></p> 
                                 </div>
-                            </span>
-                        </a>
+                            
                         <!-- maaf sil ini selection box nya aku pindah kebawah tag a biar bisa ganti opsinya -->
                         <div class="col-lg-2 text-center">
                             <div class="form-group">
@@ -81,7 +80,8 @@
                             </div>
                         </div>
                         <!-- end pindah -->
-                      
+                      </span>
+                        </a>
                     </div>
                     </div>
                  </div>

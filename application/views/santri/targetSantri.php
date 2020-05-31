@@ -6,7 +6,7 @@
         <div class="col-lg-11">
             <div class="card card-shadow mt-4">
               <div class="card-body">
-                 <h5>Daftar Target</h5>
+                 <h5 class="icon-green">Daftar Target</h5>
                  <div class="h-divider"></div>
                  <!-- list target -->
                  <div class="row mt-4 ">

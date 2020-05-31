@@ -6,10 +6,12 @@
           <div class="card-body p-3">
              <div class="row">
                <div class="col-lg ">
-                 <p>Santri : <span class="teks-subtunggal"><?= $tg->NAMA_SANTRI;?></span></p>
+                 <p><i class="fas fa-user-graduate icon-green"></i>
+Santri : <span class="teks-subtunggal"><?= $tg->NAMA_SANTRI;?></span></p>
                </div>
                <div class="col-lg">
-                 <p>Penguji  : <span class="teks-subtunggal"><?= $tg->NAMA_PENGUJI;?></span></p>
+                 <p><i class="fas fa-chalkboard-teacher icon-green"></i>
+Penguji  : Ust.<span class="teks-subtunggal"> <?= $tg->NAMA_PENGUJI;?></span></p>
                </div>
              </div>
           </div>
@@ -64,12 +66,12 @@
               </div>
             </div>
 
-            <h5>Judul Tugas : <small> <?= $tg->JUDUL_PROGRESS;?></small></h5>
+            <h5> <?= $tg->JUDUL_PROGRESS;?></h5>
             <div class="h-divider"></div>
-            <p>Deskripsi Tugas : <?= $tg->DESKRIPSI_PROGRESS;?></p>
-            <audio class="form-control" controls src="<?= base_url() ?>assets/uploads/audio/<?= $tg->AUDIO;?>"></audio>
+            <p><?= $tg->DESKRIPSI_PROGRESS;?></p>
+            <audio class="form-control shadow-sm" controls src="<?= base_url() ?>assets/uploads/audio/<?= $tg->AUDIO;?>"></audio>
             <div class="h-divider mt-4 mb-1 "></div>
-            <p class="text-center"><?= $tg->JENIS_PROGRESS;?></p>
+            <p class="text-center"><i class="fas fa-tag icon-green"> </i> <?= $tg->JENIS_PROGRESS;?></p>
             <div class="h-divider mt-2"></div>
           </div>
 
@@ -88,6 +90,7 @@
             </div>
           </div>
           <?php endforeach;?>
+          <hr>
 
           <div class="row">
             <div class="col-2">
@@ -96,9 +99,18 @@
             <div class="col-lg posisi-image" >
                   <div class="form-group">
                   <form action="<?php echo site_url('c_komen/kirimKomen/'.$kode="penguji");?>" method="post">
+                    <div class="row">
+                      <div class="col-10">
                       <input type="text" class="form-control" id="isi_komen" name="isi_komen" placeholder="Tulis Komentar">
                       <input type="text" id="id_progress" name="id_progress" value="<?= $tg->ID_PROGRESS;?>" hidden>
-                      <button class="btn btn-success mt-2" type="submit">Kirim Komentar</button>
+                    </div>
+                    <div class="col-2">
+                      <button class="btn btn-success " type="submit">Kirim</button>
+                    </div>
+                    </div>
+                    
+                      
+                      
                     </form>
                   </div>
             </div>

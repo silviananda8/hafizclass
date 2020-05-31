@@ -6,7 +6,7 @@
         <div class="col-lg-12">
             <div class="card mt-5">
               <div class="card-body">
-                 <h6>Daftar Semua Santri</h6>
+                 <h5 class="icon-green">Daftar Semua Santri</h5>
                  <div class="h-divider"></div>
                  <!-- list target -->
                  <div class="row mt-4 ">
@@ -21,7 +21,7 @@
                  <?php foreach($data as $dt):?> 
                  <div class="row mt-2">
                     <div class="col-lg-12">       
-                     <div class="list-group card-shadow mb-2">
+                     <div class="list-group shadow-sm mb-2">
                       
                       <a href="<?= site_url('penguji/profilSantri/'.$dt->ID_SANTRI);?>" class="list-group-item list-group-item-action">
                         <span class="row">

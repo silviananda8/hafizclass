@@ -6,7 +6,7 @@
         <div class="col-lg-11">
             <div class="card card-shadow mt-4 mb-5 ">
               <div class="card-body">
-                 <h5>Daftar Santri yang Diuji</h5>
+                 <h5 class="icon-green">Daftar Santri yang Diuji</h5>
                  <div class="h-divider"></div>
                  <!-- list target -->
                  <div class="row mt-4 ">
@@ -22,7 +22,7 @@
                  <div class="row mt-2">
                     <div class="col-lg-12">       
                      <div class="list-group">
-                      <div class="list-group-item list-group-item-action">
+                      <div class="list-group-item list-group-item-action shadow-sm">
                         <span class="row">
                             <div class="col-lg-7 text-left">
                                 <div class="row">

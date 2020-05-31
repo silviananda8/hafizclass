@@ -13,9 +13,10 @@
           <?php else:?>
           <?php endif;?>
           <!-- end alert data berhasil ditambahkan -->
-
+  
              <?php echo form_open_multipart('santri/pengumpulanTugas');?>
-              <div class="row">
+             <h5 class="icon-green">Pengumpulan Progress</h5>
+              <div class="row mt-3">
                 <div class="col-3">
                   <div class="form-group">
                   <select class="form-control" id="jenis_progress" name="jenis_progress">
@@ -41,7 +42,7 @@
               <div class="row">
                 <div class="col-10">
                     <div class="form-group">
-                      <label for="exampleFormControlFile1">Pilih Audio</label>
+                      <label for="exampleFormControlFile1" class="icon-green ">Pilih Audio</label>
                       <input type="file" class="form-control" id="audio" name="audio" accept="audio/*">
                     </div>
                 </div>

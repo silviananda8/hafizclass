@@ -9,11 +9,11 @@
                 <form action="<?php echo site_url('c_login/auth/'.$identify=1);?>" method='post'>
                   <div class="form-group">
                     <label for="email">Alamat email</label>
-                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="nama@gmail.com" required>
+                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="masukkan email" required>
                   </div>
                   <div class="form-group">
                     <label for="password">Kata Sandi</label>
-                    <input type="password" class="form-control mb-4" id="password" name="password" required>
+                    <input type="password" class="form-control mb-4" id="password" placeholder="Masukkan Kata sandi" name="password" required>
                   </div>
                   <!-- <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">

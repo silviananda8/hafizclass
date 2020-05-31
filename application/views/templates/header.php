@@ -32,8 +32,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto">
-            <a href="" class="text-white nav-item nav-link">Tutorial Santri</a>
-            <a href="" class=" text-white nav-item nav-link mr-3">Turorial Penguji</a>
+            <a href="#santri" class="text-white nav-item nav-link dropdown-item mr-3"><i class="fas  fa-user-graduate"></i>
+ Tutorial Santri</a>
+            <a href="#penguji" class=" text-white nav-item nav-link mr-3 dropdown-item"><i class="fas fa-chalkboard-teacher"></i>
+ Turorial Penguji</a>
             <a href="<?php echo site_url('home/login');?>"  class="btn btn-light tombol-masuk mt-2">Masuk</a>
           </div>
         </div>

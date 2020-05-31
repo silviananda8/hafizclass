@@ -32,16 +32,18 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ml-auto">
-        <a class="nav-item nav-link text-white" href="<?= base_url('santri');?>">Beranda</a>
+        <a class="nav-item nav-link text-white" href="<?= base_url('santri');?>"><i class="fas fa-clipboard-list"></i>
+  Beranda</a>
         <!-- Example single danger button -->
         <div class="btn-group">
-          <button type="button" class="btn text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button type="button" class="btn text-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-house-user"></i>
+  
           <?= $this->session->userdata('nama_santri');?>
           </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="<?= base_url('santri/profilSantri');?>">Profil</a>
+            <a class="dropdown-item" href="<?= base_url('santri/profilSantri');?>"><i class="fas fa-user-alt"></i>  Profil Saya</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="<?= base_url('c_login/logout');?>">Keluar</a>
+            <a class="dropdown-item" href="<?= base_url('c_login/logout');?>"><i class="fas fa-sign-out-alt"></i>  Keluar</a>
           </div>
         </div>
       </div>
@@ -52,3 +54,4 @@
 
 <!-- <div class="bawah-navbar"></div>
  --><!-- end navbar -->
+ <section class="bg-light pt-2 pb-5">

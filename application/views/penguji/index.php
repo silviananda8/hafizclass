@@ -29,7 +29,7 @@
                 foreach($p_saya as $ps):?>
                  <div class="row mt-2">
                     <div class="col-lg-12">       
-                        <div class="list-group card-shadow">
+                        <div class="list-group shadow-sm mb-3">
                             <a href="<?= site_url('Penguji/subtargetTunggal/'.$ps->ID_PROGRESS); ?>" class="list-group-item list-group-item-action">
                                 <span class="row">
                                     <div class="col-lg-4 text-left">
@@ -64,7 +64,7 @@
                 foreach($p_semua as $ps):?>
                  <div class="row mt-2">
                     <div class="col-lg-12">       
-                        <div class="list-group card-shadow">
+                        <div class="list-group shadow-sm mb-3">
                             <a href="<?= site_url('Penguji/subtargetTunggal/'.$ps->ID_PROGRESS); ?>" class="list-group-item list-group-item-action">
                                 <span class="row">
                                     <div class="col-lg-4 text-left">
