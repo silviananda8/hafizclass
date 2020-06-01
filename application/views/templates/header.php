@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="<?= base_url(''); ?>assets/css/jquery.datetimepicker.min.css">
     <link rel="stylesheet" href="<?= base_url(''); ?>assets/css/jquery-ui.css">
 
+    <!-- Kalender -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/plugins/fullcalendar/fullcalendar.css'; ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css'; ?>">
+
 
     <meta charset="UTF-8">
     <title>Document</title>
@@ -32,10 +36,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto">
-            <a href="#santri" class="text-white nav-item nav-link dropdown-item mr-3"><i class="fas  fa-user-graduate"></i>
- Tutorial Santri</a>
-            <a href="#penguji" class=" text-white nav-item nav-link mr-3 dropdown-item"><i class="fas fa-chalkboard-teacher"></i>
- Turorial Penguji</a>
+            <a href="#santri" class="text-white nav-item nav-link dropdown-item mr-3">
+              <i class="fas  fa-user-graduate"></i>
+              Tutorial Santri
+            </a>
+            <a href="#penguji" class=" text-white nav-item nav-link mr-3 dropdown-item">
+              <i class="fas fa-chalkboard-teacher"></i>
+              Turorial Penguji
+            </a>
+
             <a href="<?php echo site_url('home/login');?>"  class="btn btn-light tombol-masuk mt-2">Masuk</a>
           </div>
         </div>

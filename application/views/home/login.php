@@ -6,6 +6,19 @@
             <div class="card card-shadow mt-5 mb-5">
               <div class="card-body">
                 <h6 class="text-center mb-5">Silahkan masukkan email dan kata sandi <br> yang sudah terdaftarkan</h6>
+                
+                <!-- alert registrasi berhasil -->
+                <?php if($this->session->flashdata()== true):?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <?= $this->session->flashdata('msg'); ?>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <?php else:?>
+                <?php endif;?>
+                <!-- end alert register -->
+                
                 <form action="<?php echo site_url('c_login/auth/'.$identify=1);?>" method='post'>
                   <div class="form-group">
                     <label for="email">Alamat email</label>

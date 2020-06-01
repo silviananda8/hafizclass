@@ -74,7 +74,7 @@ class m_penguji extends CI_Model{
         return $query;
     }
 
-    // tambah target untuk santri
+    // tambah progress untuk santri
     function tambahProgress($progress){
         $this->db->insert('progress', $progress);
     }
@@ -84,8 +84,19 @@ class m_penguji extends CI_Model{
         return $query;
     }
 
+    //crud target untuk santri
     function tambahTarget($target){
         $this->db->insert('target', $target);
+    }
+
+    function hapusTargetSantri($id_target){
+        $this->db->where('ID_TARGET',$id_target);
+        $this->db->delete('target');
+    }
+
+    function editTargetSantri($id_target,$data_target){
+        $this->db->where('ID_TARGET', $id_target);
+		$this->db->update('target', $data_target);
     }
     
     function pengumpulanSaya($id_penguji){
@@ -101,7 +112,7 @@ class m_penguji extends CI_Model{
     }
 
     function subtargetTunggal($id_progress){
-        $this->db->select('santri.*, target.*, progress.*, penguji.NAMA_PENGUJI, DATE_FORMAT(harian.TANGGAL_HARIAN, "%d %M %Y") AS TANGGAL_HARIAN,DATE_FORMAT(target.BATAS_UPLOAD, "%d %M %Y") AS BTS_UPLOAD');
+        $this->db->select('santri.*, target.*, progress.*, santri.ID_PENGUJI, penguji.NAMA_PENGUJI, DATE_FORMAT(harian.TANGGAL_HARIAN, "%d %M %Y") AS TANGGAL_HARIAN,DATE_FORMAT(target.BATAS_UPLOAD, "%d %M %Y") AS BTS_UPLOAD');
         $this->relasi();
         $this->db->where('progress.ID_PROGRESS',$id_progress);
         $this->db->limit(1);
@@ -117,7 +128,7 @@ class m_penguji extends CI_Model{
     }
 
     function subTargetByTarget($id_target){
-        $this->db->select('target.*, penguji.NAMA_PENGUJI, DATE_FORMAT(harian.TANGGAL_HARIAN, "%d %M %Y") AS TANGGAL_HARIAN,DATE_FORMAT(target.BATAS_UPLOAD, "%d %M %Y") AS BTS_UPLOAD');
+        $this->db->select('santri.*, target.*, penguji.NAMA_PENGUJI, santri.ID_PENGUJI, DATE_FORMAT(harian.TANGGAL_HARIAN, "%d %M %Y") AS TANGGAL_HARIAN,DATE_FORMAT(target.BATAS_UPLOAD, "%d %M %Y") AS BTS_UPLOAD');
         $this->relasi();
         $this->db->where('target.ID_TARGET',$id_target);
         $this->db->limit(1);
@@ -140,5 +151,33 @@ class m_penguji extends CI_Model{
     function updatePengujiSantri($id_santri,$data){
         $this->db->where('ID_SANTRI', $id_santri);
 		$this->db->update('santri', $data);
+    }
+
+    function kalenderAbsenBySantri($id_santri){
+        $this->db->select('target.*, harian.`TANGGAL_HARIAN`, progress.*, penguji.NAMA_PENGUJI, DATE_FORMAT(target.BATAS_UPLOAD, "%d %M %Y") AS BTS_UPLOAD');
+        $this->db->from('santri, penguji, target, harian, progress');
+        $this->db->where('santri.ID_SANTRI = target.ID_SANTRI');
+        $this->db->where('penguji.ID_PENGUJI = target.ID_PENGUJI');
+        $this->db->where('harian.ID_TARGET = target.ID_TARGET');
+        $this->db->where('progress.ID_HARIAN = harian.ID_HARIAN');
+        $this->db->where('santri.ID_SANTRI',$id_santri);
+        return $this->db->get()->result();
+    }
+
+    function subTargetByTargetCadangan($id_target){
+        $this->db->select('santri.*, target.*, penguji.NAMA_PENGUJI, santri.ID_PENGUJI, DATE_FORMAT(target.BATAS_UPLOAD, "%d %M %Y") AS BTS_UPLOAD');
+        $this->db->from('santri, penguji, target');
+        $this->db->where('santri.ID_SANTRI = target.ID_SANTRI');
+        $this->db->where('penguji.ID_PENGUJI = target.ID_PENGUJI');
+        $this->db->where('target.ID_TARGET',$id_target);
+        $this->db->limit(1);
+        return $this->db->get();
+    }
+
+    function listPengujiNotInTarget($id_target){
+        $this->db->select('penguji.NAMA_PENGUJI, penguji.ID_PENGUJI');
+        $this->db->from('penguji');
+        $this->db->where("penguji.ID_PENGUJI NOT IN (SELECT target.ID_PENGUJI FROM penguji, target WHERE penguji.ID_PENGUJI = target.ID_PENGUJI AND target.ID_TARGET='$id_target')");
+        return $this->db->get();
     }
 }

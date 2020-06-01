@@ -1,4 +1,32 @@
-<?php if(isset($progress)):?>
+      <?php foreach($target as $tg):?>
+        <div class="card card-shadow mt-4">
+          <div class="card-body p-3">
+             <div class="row">
+               <div class="col-lg ">
+                  <p><i class="fas fa-user-graduate icon-green"></i>
+                    Santri : <span class="teks-subtunggal"><?= $tg->NAMA_SANTRI;?></span>
+                  </p>
+               </div>
+               <div class="col-lg">
+                  <p><i class="fas fa-chalkboard-teacher icon-green"></i>
+                    Penguji  : Ust.<span class="teks-subtunggal"> <?= $tg->NAMA_PENGUJI;?></span>
+                  </p>
+               </div>
+             </div>
+          </div>
+        </div>
+      <?php endforeach;?>
+      
+      <!-- alert tidak ada progress -->
+        <?php if($this->session->flashdata()== true):?>
+        <div class="alert alert-danger alert-dismissible fade show mt-5" role="alert">
+          <?= $this->session->flashdata('msg'); ?>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <?php else:?>
+      <!-- end alert tidak ada progress -->
     <?php foreach($progress as $pg):?>
       
         <div class="card card-shadow mt-4">
@@ -83,7 +111,7 @@
         <!-- Kirim Komentar -->
           <div class="row">
             <div class="col-2">
-               <img src="<?= base_url() ?>assets/uploads/avatar/<?= $this->session->userdata('foto_penguji');?>" alt="..." class="rounded-circle img-fluid mr-3 float-right tugas-image" >
+            <img src="<?= base_url() ?>assets/uploads/avatar/<?= $this->session->userdata('foto_penguji');?>" alt="..." class="rounded-circle img-fluid mr-3 float-right tugas-image" >
             </div>
             <div class="col-lg posisi-image" >
                   <div class="form-group pr-2">

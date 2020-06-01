@@ -6,12 +6,14 @@
           <div class="card-body p-3">
              <div class="row">
                <div class="col-lg ">
-                 <p><i class="fas fa-user-graduate icon-green"></i>
-Santri : <span class="teks-subtunggal"><?= $tg->NAMA_SANTRI;?></span></p>
+                  <p><i class="fas fa-user-graduate icon-green"></i>
+                    Santri : <span class="teks-subtunggal"><?= $tg->NAMA_SANTRI;?></span>
+                  </p>
                </div>
                <div class="col-lg">
-                 <p><i class="fas fa-chalkboard-teacher icon-green"></i>
-Penguji  : Ust.<span class="teks-subtunggal"> <?= $tg->NAMA_PENGUJI;?></span></p>
+                  <p><i class="fas fa-chalkboard-teacher icon-green"></i>
+                    Penguji  : Ust.<span class="teks-subtunggal"> <?= $tg->NAMA_PENGUJI;?></span>
+                  </p>
                </div>
              </div>
           </div>
