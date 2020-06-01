@@ -22,10 +22,10 @@
                  <div class="row mt-4 ">
 
                     <!-- alert tambah target berhasil -->
-                    <?php if($this->session->flashdata()== true):?>
+                    <?php if($this->session->flashdata('target')== true):?>
                     <div class="col-lg-12">
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <?= $this->session->flashdata('msg'); ?>
+                            <?= $this->session->flashdata('target'); ?>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
@@ -125,7 +125,7 @@
                         <label for="id_penguji">Daftar Ustadz</label>
                         <select class="form-control" id="id_penguji" name="id_penguji">
                         <?php foreach($penguji as $pj):?>
-                            <option value="<?= $pj->ID_PENGUJI;?>">Ust. <?= $pj->NAMA_PENGUJI;?></option>
+                            <option value="<?= $pj->ID_PENGUJI;?>">Ust. <?= $pj->NAMA_PENGUJI;?> </option>
                         <?php endforeach;?>
                         </select>
                     </div>

@@ -25,9 +25,9 @@ CREATE TABLE `harian` (
   `ID_TARGET` int(11) NOT NULL,
   `TANGGAL_HARIAN` date NOT NULL,
   PRIMARY KEY (`ID_HARIAN`),
-  KEY `ID_PROGRESS` (`ID_TARGET`),
-  CONSTRAINT `harian_ibfk_1` FOREIGN KEY (`ID_TARGET`) REFERENCES `target` (`ID_TARGET`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  KEY `harian_ibfk_1` (`ID_TARGET`),
+  CONSTRAINT `harian_ibfk_1` FOREIGN KEY (`ID_TARGET`) REFERENCES `target` (`ID_TARGET`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 /*Data for the table `harian` */
 
@@ -50,9 +50,9 @@ CREATE TABLE `komentar` (
   `ISI_KOMEN` text,
   `TANGGAL_KOMEN` varchar(50) NOT NULL,
   PRIMARY KEY (`ID_KOMEN`),
-  KEY `ID_PROGRESS` (`ID_PROGRESS`),
-  CONSTRAINT `komentar_ibfk_1` FOREIGN KEY (`ID_PROGRESS`) REFERENCES `progress` (`ID_PROGRESS`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+  KEY `komentar_ibfk_1` (`ID_PROGRESS`),
+  CONSTRAINT `komentar_ibfk_1` FOREIGN KEY (`ID_PROGRESS`) REFERENCES `progress` (`ID_PROGRESS`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 /*Data for the table `komentar` */
 
@@ -107,9 +107,9 @@ CREATE TABLE `progress` (
   `STATUS_PROGRESS` varchar(25) NOT NULL,
   `AUDIO` text,
   PRIMARY KEY (`ID_PROGRESS`),
-  KEY `ID_HARIAN` (`ID_HARIAN`),
-  CONSTRAINT `progress_ibfk_1` FOREIGN KEY (`ID_HARIAN`) REFERENCES `harian` (`ID_HARIAN`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+  KEY `progress_ibfk_1` (`ID_HARIAN`),
+  CONSTRAINT `progress_ibfk_1` FOREIGN KEY (`ID_HARIAN`) REFERENCES `harian` (`ID_HARIAN`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 /*Data for the table `progress` */
 
@@ -167,14 +167,15 @@ CREATE TABLE `target` (
   KEY `ID_PENGUJI` (`ID_PENGUJI`),
   CONSTRAINT `target_ibfk_1` FOREIGN KEY (`ID_SANTRI`) REFERENCES `santri` (`ID_SANTRI`),
   CONSTRAINT `target_ibfk_2` FOREIGN KEY (`ID_PENGUJI`) REFERENCES `penguji` (`ID_PENGUJI`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 /*Data for the table `target` */
 
 insert  into `target`(`ID_TARGET`,`ID_SANTRI`,`ID_PENGUJI`,`JUDUL_TARGET`,`DESKRIPSI_TARGET`,`STATUS_TARGET`,`TANGGAL_UPLOAD`,`BATAS_UPLOAD`) values 
-(7,1,1,'Hafalan juz 30','Hafalan Juz 30 bisa dicicil','Belum Tuntas','2020-05-28','2020-06-28'),
+(7,1,1,'Hafalan juz 30','Kalau bisa dikumpulkan hari ini','Belum Tuntas','2020-05-28','2020-06-28'),
 (8,3,4,'Hafalan Jus 1','Surat Al-Baqoroh panjang, semangat ya','Belum Tuntas','2020-05-28','2020-06-28'),
-(9,1,2,'aaa','aaa','Sudah Tuntas','2020-05-28','2020-05-31');
+(9,1,1,'membaca surat al-kahfi','al-kahfi','Sudah Tuntas','2020-05-28','2020-06-02'),
+(10,3,2,'kkkkk','kkkkk','Belum Tuntas','0000-00-00','2020-06-10');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

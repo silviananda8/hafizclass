@@ -25,6 +25,16 @@ class Penguji extends CI_Controller {
 
 	public function subtarget($id_target){
 		$data['target'] = $this->m_penguji->subTargetbyTarget($id_target)->result();
+		
+
+		if($data['target'] == null){
+			$data['target']	= $this->m_penguji->subTargetbyTargetCadangan($id_target)->result();
+		}else{}
+
+		foreach($data['target'] as $key){
+			$id_target = $key->ID_TARGET;
+			$data['list_penguji'] 	= $this->m_penguji->listPengujiNotInTarget($id_target)->result();
+		}
 
 		$this->load->model('m_komen');
 		$data['komen'] 		= $this->m_komen->getKomenByTarget($id_target)->result();
@@ -43,6 +53,11 @@ class Penguji extends CI_Controller {
 	public function subtargetTunggal($id_progress){
 		$data['target'] = $this->m_penguji->subtargetTunggal($id_progress)->result();
 		$data['komen'] 	= $this->m_penguji->getKomenByProgress($id_progress)->result();
+
+		foreach($data['target'] as $key){
+			$id_target = $key->ID_TARGET;
+			$data['list_penguji'] 	= $this->m_penguji->listPengujiNotInTarget($id_target)->result();
+		}
 
 		$this->load->view('templates/headerPenguji');
 		$this->load->view('santri/detailSubtarget_penguji',$data);
@@ -214,6 +229,7 @@ class Penguji extends CI_Controller {
         redirect('home/regisPenguji');
 	}
 
+	//crud target santri
 	function tambahTargetSantri(){
 		$id_santri = $this->input->post('id_santri');
 		$id_penguji = $this->input->post('id_penguji');
@@ -231,8 +247,37 @@ class Penguji extends CI_Controller {
 
 		$this->m_penguji->tambahTarget($target);
 
-		$this->session->set_flashdata('msg','Target Telah Ditambahkan');
+		$this->session->set_flashdata('target','Target Telah Ditambahkan');
         redirect('penguji/profilSantri/'.$id_santri);
+	}
+
+	function hapusTargetSantri(){
+		$id_target = $this->input->post('id_target');
+		$id_santri = $this->input->post('santri');
+
+		$this->m_penguji->hapusTargetSantri($id_target);
+		redirect('penguji/profilSantri/'.$id_santri);
+	}
+	
+	function updateTargetSantri(){
+		$id_target 		= $this->input->post('id_target');
+		$id_progress 	= $this->input->post('id_progress');
+
+		$data_target = array(
+			'JUDUL_TARGET'		=> $this->input->post('judul_target'),
+			'DESKRIPSI_TARGET'	=> $this->input->post('deskripsi_target'),
+			'BATAS_UPLOAD'		=> $this->input->post('batas_waktu'),
+			'ID_PENGUJI'		=> $this->input->post('id_penguji')
+		);
+
+		$this->m_penguji->editTargetSantri($id_target,$data_target);
+
+		if($id_progress == "0"){
+			redirect('penguji/subtarget/'.$id_target);
+		}else{
+			redirect('penguji/subtargetTunggal/'.$id_progress);
+		}
+		
 	}
 
 	function updateStatusTarget(){
