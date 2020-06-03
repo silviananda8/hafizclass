@@ -112,7 +112,7 @@ class m_penguji extends CI_Model{
     }
 
     function subtargetTunggal($id_progress){
-        $this->db->select('santri.*, target.*, progress.*, santri.ID_PENGUJI, penguji.NAMA_PENGUJI, DATE_FORMAT(harian.TANGGAL_HARIAN, "%d %M %Y") AS TANGGAL_HARIAN,DATE_FORMAT(target.BATAS_UPLOAD, "%d %M %Y") AS BTS_UPLOAD');
+        $this->db->select('santri.*, target.*, progress.*, santri.ID_PENGUJI, penguji.NAMA_PENGUJI, DATE_FORMAT(progress.TANGGAL_PROGRESS , "%d %M %Y %H:%i:%s") AS TANGGAL_HARIAN,DATE_FORMAT(target.BATAS_UPLOAD, "%d %M %Y") AS BTS_UPLOAD');
         $this->relasi();
         $this->db->where('progress.ID_PROGRESS',$id_progress);
         $this->db->limit(1);

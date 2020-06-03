@@ -148,6 +148,7 @@ class Santri extends CI_Controller {
 
 	function pengumpulanTugas(){
 		$id_target = $this->input->post('id_target');
+		$tanggal_progress  = date("Y-m-d H:i:s", strtotime("+5 hours"));
 		if($id_target == null){
 			$this->session->set_flashdata('msg','Tidak Ada Target Untuk Saat Ini');
 			redirect('santri/index');
@@ -179,7 +180,7 @@ class Santri extends CI_Controller {
 		}
 
 
-		if($tgl == $tanggal_harian){
+		if($tgl == $tanggal_harian){//jika tanggal harian dari id itu udah ada
 
 			//insert into progress
 			$progress = array(
@@ -188,7 +189,8 @@ class Santri extends CI_Controller {
 				'DESKRIPSI_PROGRESS'=> $this->input->post('deskripsi_progress'),
 				'JENIS_PROGRESS'	=> $this->input->post('jenis_progress'),
 				'STATUS_PROGRESS'	=> "Belum Dinilai",
-				'AUDIO'				=> $audio
+				'AUDIO'				=> $audio,
+				'TANGGAL_PROGRESS'	=> $tanggal_progress
 			);
 			$this->session->set_flashdata('msg','Data berhasil Ditambahkan');
 			$this->m_santri->tambahProgress($progress);
@@ -215,7 +217,8 @@ class Santri extends CI_Controller {
 				'DESKRIPSI_PROGRESS'=> $this->input->post('deskripsi_progress'),
 				'JENIS_PROGRESS'	=> $this->input->post('jenis_progress'),
 				'STATUS_PROGRESS'	=> "Belum Dinilai",
-				'AUDIO'				=> $audio
+				'AUDIO'				=> $audio,
+				'TANGGAL_PROGRESS'	=> $tanggal_progress
 			);
 
 			$this->session->set_flashdata('msg','Data berhasil Ditambahkan');

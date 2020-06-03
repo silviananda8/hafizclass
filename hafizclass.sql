@@ -1,79 +1,92 @@
-/*
-SQLyog Ultimate v13.1.1 (64 bit)
-MySQL - 10.1.38-MariaDB : Database - hafizclass
-*********************************************************************
-*/
+-- phpMyAdmin SQL Dump
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jun 03, 2020 at 06:28 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.1.28
 
-/*!40101 SET NAMES utf8 */;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
-/*!40101 SET SQL_MODE=''*/;
 
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`hafizclass` /*!40100 DEFAULT CHARACTER SET latin1 */;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-USE `hafizclass`;
+--
+-- Database: `hafizclass`
+--
 
-/*Table structure for table `harian` */
+-- --------------------------------------------------------
 
-DROP TABLE IF EXISTS `harian`;
+--
+-- Table structure for table `harian`
+--
 
 CREATE TABLE `harian` (
-  `ID_HARIAN` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_HARIAN` int(11) NOT NULL,
   `ID_TARGET` int(11) NOT NULL,
-  `TANGGAL_HARIAN` date NOT NULL,
-  PRIMARY KEY (`ID_HARIAN`),
-  KEY `harian_ibfk_1` (`ID_TARGET`),
-  CONSTRAINT `harian_ibfk_1` FOREIGN KEY (`ID_TARGET`) REFERENCES `target` (`ID_TARGET`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+  `TANGGAL_HARIAN` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `harian` */
+--
+-- Dumping data for table `harian`
+--
 
-insert  into `harian`(`ID_HARIAN`,`ID_TARGET`,`TANGGAL_HARIAN`) values 
-(6,7,'2020-05-28'),
-(7,7,'2020-05-29'),
-(8,8,'2020-05-29'),
-(9,9,'2020-05-31'),
-(10,9,'2020-06-01');
+INSERT INTO `harian` (`ID_HARIAN`, `ID_TARGET`, `TANGGAL_HARIAN`) VALUES
+(6, 7, '2020-05-28'),
+(7, 7, '2020-05-29'),
+(8, 8, '2020-05-29'),
+(9, 9, '2020-05-31'),
+(10, 9, '2020-06-01'),
+(11, 7, '2020-06-03');
 
-/*Table structure for table `komentar` */
+-- --------------------------------------------------------
 
-DROP TABLE IF EXISTS `komentar`;
+--
+-- Table structure for table `komentar`
+--
 
 CREATE TABLE `komentar` (
-  `ID_KOMEN` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_KOMEN` int(11) NOT NULL,
   `ID_PROGRESS` int(11) NOT NULL,
   `NAMA_PENGIRIM` varchar(50) DEFAULT NULL,
   `AVATAR_PENGIRIM` text,
   `ISI_KOMEN` text,
-  `TANGGAL_KOMEN` varchar(50) NOT NULL,
-  PRIMARY KEY (`ID_KOMEN`),
-  KEY `komentar_ibfk_1` (`ID_PROGRESS`),
-  CONSTRAINT `komentar_ibfk_1` FOREIGN KEY (`ID_PROGRESS`) REFERENCES `progress` (`ID_PROGRESS`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+  `TANGGAL_KOMEN` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `komentar` */
+--
+-- Dumping data for table `komentar`
+--
 
-insert  into `komentar`(`ID_KOMEN`,`ID_PROGRESS`,`NAMA_PENGIRIM`,`AVATAR_PENGIRIM`,`ISI_KOMEN`,`TANGGAL_KOMEN`) values 
-(1,10,'Akbar','Books_HD_8314929977-1024x682.jpg','kurang jelas','29-May-2020 16:56:40 '),
-(2,10,'Ikhwan N A','masjid-pogung-dalangan-t5wNqFyCkTI-unsplash2.jpg','baik akan saya perbaiki','29-May-2020 17:00:00 '),
-(3,14,'Akbar','Books_HD_8314929977-1024x682.jpg','untuk progress ini sudah cukup baik',''),
-(4,15,'kusuma','quran.jpg',NULL,'29-May-2020 21:56:05'),
-(5,15,'kusuma','quran.jpg','jika perlu diperbaiki bilang saja pak','29-May-2020 21:56:55'),
-(6,15,'kusuma','quran.jpg','test','29-May-2020 22:02:26'),
-(9,15,'Akbar','Books_HD_8314929977-1024x682.jpg','siap','30-May-2020 12:30:43'),
-(10,15,'kusuma','quran.jpg','ok','30-May-2020 12:31:25'),
-(11,15,'Ust cccc','ngaji.jpg','mmantap nak','30-May-2020 13:33:25'),
-(12,11,'Ust cccc','ngaji.jpg','asd','30-May-2020 13:33:58');
+INSERT INTO `komentar` (`ID_KOMEN`, `ID_PROGRESS`, `NAMA_PENGIRIM`, `AVATAR_PENGIRIM`, `ISI_KOMEN`, `TANGGAL_KOMEN`) VALUES
+(1, 10, 'Ust. Akbar', 'Books_HD_8314929977-1024x682.jpg', 'kurang jelas', '29-May-2020 16:56:40 '),
+(2, 10, 'Ikhwan N A', 'masjid-pogung-dalangan-t5wNqFyCkTI-unsplash2.jpg', 'baik akan saya perbaiki', '29-May-2020 17:00:00 '),
+(3, 14, 'Ust. Akbar', 'Books_HD_8314929977-1024x682.jpg', 'untuk progress ini sudah cukup baik', '29-May-2020 17:00:00 '),
+(4, 15, 'kusuma', 'quran.jpg', 'ccccc', '29-May-2020 21:56:05'),
+(5, 15, 'kusuma', 'quran.jpg', 'jika perlu diperbaiki bilang saja pak', '29-May-2020 21:56:55'),
+(6, 15, 'kusuma', 'quran.jpg', 'test', '29-May-2020 22:02:26'),
+(9, 15, 'Ust. Akbar', 'Books_HD_8314929977-1024x682.jpg', 'siap', '30-May-2020 12:30:43'),
+(10, 15, 'kusuma', 'quran.jpg', 'ok', '30-May-2020 12:31:25'),
+(11, 15, 'Ust cccc', 'ngaji.jpg', 'mmantap nak', '30-May-2020 13:33:25'),
+(12, 11, 'Ust cccc', 'ngaji.jpg', 'asd', '30-May-2020 13:33:58'),
+(16, 10, 'Ust. Akbar', 'Books_HD_8314929977-1024x682.jpg', 'aaaa', '01-Jun-2020 13:13:00'),
+(17, 10, 'Ikhwan N A', 'masjid-pogung-dalangan-t5wNqFyCkTI-unsplash2.jpg', 'hari ini 3 juni jam 10:30', '03-Jun-2020 10:30:20');
 
-/*Table structure for table `penguji` */
+-- --------------------------------------------------------
 
-DROP TABLE IF EXISTS `penguji`;
+--
+-- Table structure for table `penguji`
+--
 
 CREATE TABLE `penguji` (
-  `ID_PENGUJI` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_PENGUJI` int(11) NOT NULL,
   `EMAIL_PENGUJI` varchar(50) DEFAULT NULL,
   `PASSWORD_PENGUJI` varchar(25) DEFAULT NULL,
   `NAMA_PENGUJI` varchar(50) DEFAULT NULL,
@@ -81,52 +94,57 @@ CREATE TABLE `penguji` (
   `ALAMAT_PENGUJI` text NOT NULL,
   `TELEPON_PENGUJI` int(11) DEFAULT NULL,
   `FOTO_PENGUJI` text,
-  `TINGKAT_MENGUJI` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`ID_PENGUJI`),
-  UNIQUE KEY `EMAIL_PENGUJI` (`EMAIL_PENGUJI`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  `TINGKAT_MENGUJI` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `penguji` */
+--
+-- Dumping data for table `penguji`
+--
 
-insert  into `penguji`(`ID_PENGUJI`,`EMAIL_PENGUJI`,`PASSWORD_PENGUJI`,`NAMA_PENGUJI`,`JK_PENGUJI`,`ALAMAT_PENGUJI`,`TELEPON_PENGUJI`,`FOTO_PENGUJI`,`TINGKAT_MENGUJI`) values 
-(1,'penguji@gmail.com','54321','Akbar','Laki-laki','Jl. Kedurus, Karang Pilang',2147483647,'Books_HD_8314929977-1024x682.jpg','Hafalan Jus 29 dan 30'),
-(2,'aaa@gmail.com','aaa','aaa','Perempuan','Jl. Mawar',87654323,'avatar.jpg','Membaca AL-Qur\'an'),
-(4,'bbb@gmail.com','bbb','bbb','Perempuan','Jl. Sepatu',8473649,'car-rental2.png','observer'),
-(5,'ccc@gmail.com','ccc','ccvvcv','Perempuan','Jl. kenangan',2386916,'car-rental1.png','observer ');
+INSERT INTO `penguji` (`ID_PENGUJI`, `EMAIL_PENGUJI`, `PASSWORD_PENGUJI`, `NAMA_PENGUJI`, `JK_PENGUJI`, `ALAMAT_PENGUJI`, `TELEPON_PENGUJI`, `FOTO_PENGUJI`, `TINGKAT_MENGUJI`) VALUES
+(1, 'penguji@gmail.com', '54321', 'Akbar', 'Laki-laki', 'Jl. Kedurus, Karang Pilang', 2147483647, 'Books_HD_8314929977-1024x682.jpg', 'Hafalan Jus 29 dan 30'),
+(2, 'aaa@gmail.com', 'aaa', 'aaa', 'Perempuan', 'Jl. Mawar', 87654323, 'avatar.jpg', 'Membaca AL-Qur\'an'),
+(4, 'bbb@gmail.com', 'bbb', 'bbb', 'Perempuan', 'Jl. Sepatu', 8473649, 'car-rental2.png', 'observer'),
+(5, 'ccc@gmail.com', 'ccc', 'ccvvcv', 'Perempuan', 'Jl. kenangan', 2386916, 'car-rental1.png', 'observer ');
 
-/*Table structure for table `progress` */
+-- --------------------------------------------------------
 
-DROP TABLE IF EXISTS `progress`;
+--
+-- Table structure for table `progress`
+--
 
 CREATE TABLE `progress` (
-  `ID_PROGRESS` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_PROGRESS` int(11) NOT NULL,
   `ID_HARIAN` int(11) NOT NULL,
   `JUDUL_PROGRESS` varchar(50) DEFAULT NULL,
   `DESKRIPSI_PROGRESS` text NOT NULL,
   `JENIS_PROGRESS` varchar(25) DEFAULT NULL,
   `STATUS_PROGRESS` varchar(25) NOT NULL,
   `AUDIO` text,
-  PRIMARY KEY (`ID_PROGRESS`),
-  KEY `progress_ibfk_1` (`ID_HARIAN`),
-  CONSTRAINT `progress_ibfk_1` FOREIGN KEY (`ID_HARIAN`) REFERENCES `harian` (`ID_HARIAN`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+  `TANGGAL_PROGRESS` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `progress` */
+--
+-- Dumping data for table `progress`
+--
 
-insert  into `progress`(`ID_PROGRESS`,`ID_HARIAN`,`JUDUL_PROGRESS`,`DESKRIPSI_PROGRESS`,`JENIS_PROGRESS`,`STATUS_PROGRESS`,`AUDIO`) values 
-(10,6,'asd','aaaa','Menghafal','Remidi','WhatsApp_Audio_2020-05-28_at_17.01.21.mp3'),
-(11,6,'asdasdasd','asdasdasd','Menghafal','Lancar','WhatsApp_Audio_2020-05-28_at_17.01.033.ogg'),
-(14,7,'vbvb','vbvb','Menghafal','Belum Dinilai','s2-2018-360607-tableofcontent.pdf'),
-(15,8,'surat al-fatihah','menghafal surat al-fatihah, maaf jika kurang lancar','Menghafal','Remidi','WhatsApp_Audio_2020-05-28_at_17.01.16.ogg'),
-(16,9,'bbbbbb','bbbbbbbbb','Muroja\'ah','Belum Dinilai','WhatsApp_Audio_2020-05-28_at_17.01.212.mp3'),
-(17,10,'hhhhh','hhhhh','Muroja\'ah','Belum Dinilai','WhatsApp_Audio_2020-05-28_at_17.01.082.ogg');
+INSERT INTO `progress` (`ID_PROGRESS`, `ID_HARIAN`, `JUDUL_PROGRESS`, `DESKRIPSI_PROGRESS`, `JENIS_PROGRESS`, `STATUS_PROGRESS`, `AUDIO`, `TANGGAL_PROGRESS`) VALUES
+(10, 6, 'asd', 'aaaa', 'Menghafal', 'Remidi', 'WhatsApp_Audio_2020-05-28_at_17.01.21.mp3', '2020-05-28 10:58:52'),
+(11, 6, 'asdasdasd', 'asdasdasd', 'Menghafal', 'Lancar', 'WhatsApp_Audio_2020-05-28_at_17.01.033.ogg', '2020-05-28 10:58:52'),
+(14, 7, 'vbvb', 'vbvb', 'Menghafal', 'Belum Dinilai', 's2-2018-360607-tableofcontent.pdf', '2020-05-29 10:59:57'),
+(15, 8, 'surat al-fatihah', 'menghafal surat al-fatihah, maaf jika kurang lancar', 'Menghafal', 'Remidi', 'WhatsApp_Audio_2020-05-28_at_17.01.16.ogg', '2020-05-29 10:59:57'),
+(16, 9, 'bbbbbb', 'bbbbbbbbb', 'Muroja\'ah', 'Belum Dinilai', 'WhatsApp_Audio_2020-05-28_at_17.01.212.mp3', '2020-05-31 11:00:22'),
+(17, 10, 'hhhhh', 'hhhhh', 'Muroja\'ah', 'Belum Dinilai', 'WhatsApp_Audio_2020-05-28_at_17.01.082.ogg', '2020-06-01 11:00:28'),
+(18, 11, '3 juni', '3 juni', 'Membaca', 'Belum Dinilai', 'WhatsApp_Audio_2020-05-28_at_17.00.571.ogg', '2020-06-03 11:09:06');
 
-/*Table structure for table `santri` */
+-- --------------------------------------------------------
 
-DROP TABLE IF EXISTS `santri`;
+--
+-- Table structure for table `santri`
+--
 
 CREATE TABLE `santri` (
-  `ID_SANTRI` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_SANTRI` int(11) NOT NULL,
   `ID_PENGUJI` int(11) NOT NULL,
   `EMAIL_SANTRI` varchar(50) DEFAULT NULL,
   `PASSWORD_SANTRI` varchar(25) DEFAULT NULL,
@@ -135,49 +153,169 @@ CREATE TABLE `santri` (
   `ALAMAT_SANTRI` text NOT NULL,
   `TINGKAT_PENDIDIKAN` varchar(10) NOT NULL,
   `TELEPON_SANTRI` int(15) DEFAULT NULL,
-  `FOTO_SANTRI` text,
-  PRIMARY KEY (`ID_SANTRI`),
-  UNIQUE KEY `EMAIL_SANTRI` (`EMAIL_SANTRI`),
-  KEY `santri_ibfk_1` (`ID_PENGUJI`),
-  CONSTRAINT `santri_ibfk_1` FOREIGN KEY (`ID_PENGUJI`) REFERENCES `penguji` (`ID_PENGUJI`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `FOTO_SANTRI` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `santri` */
+--
+-- Dumping data for table `santri`
+--
 
-insert  into `santri`(`ID_SANTRI`,`ID_PENGUJI`,`EMAIL_SANTRI`,`PASSWORD_SANTRI`,`NAMA_SANTRI`,`JK_SANTRI`,`ALAMAT_SANTRI`,`TINGKAT_PENDIDIKAN`,`TELEPON_SANTRI`,`FOTO_SANTRI`) values 
-(1,1,'santri@gmail.com','12345','Ikhwan N A','Laki-laki','Jl. Kamboja','SMP',87152375,'masjid-pogung-dalangan-t5wNqFyCkTI-unsplash2.jpg'),
-(2,1,'asha@gmail.com','asha','asha','Perempuan','Jl. Anggrek','SD',0,'kusmayadi-sasmitha-ONlDOQkqDbA-unsplash.jpg'),
-(3,2,'kusuma@gmail.com','12345','kusuma','Laki-laki','Jl. Lurian','SMP',87936826,'quran.jpg');
+INSERT INTO `santri` (`ID_SANTRI`, `ID_PENGUJI`, `EMAIL_SANTRI`, `PASSWORD_SANTRI`, `NAMA_SANTRI`, `JK_SANTRI`, `ALAMAT_SANTRI`, `TINGKAT_PENDIDIKAN`, `TELEPON_SANTRI`, `FOTO_SANTRI`) VALUES
+(1, 1, 'santri@gmail.com', '12345', 'Ikhwan N A', 'Laki-laki', 'Jl. Kamboja', 'SMP', 87152375, 'masjid-pogung-dalangan-t5wNqFyCkTI-unsplash2.jpg'),
+(2, 1, 'asha@gmail.com', 'asha', 'asha', 'Perempuan', 'Jl. Anggrek', 'SD', 0, 'kusmayadi-sasmitha-ONlDOQkqDbA-unsplash.jpg'),
+(3, 2, 'kusuma@gmail.com', '12345', 'kusuma', 'Laki-laki', 'Jl. Lurian', 'SMP', 87936826, 'quran.jpg');
 
-/*Table structure for table `target` */
+-- --------------------------------------------------------
 
-DROP TABLE IF EXISTS `target`;
+--
+-- Table structure for table `target`
+--
 
 CREATE TABLE `target` (
-  `ID_TARGET` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_TARGET` int(11) NOT NULL,
   `ID_SANTRI` int(11) NOT NULL,
   `ID_PENGUJI` int(11) NOT NULL,
   `JUDUL_TARGET` varchar(50) DEFAULT NULL,
   `DESKRIPSI_TARGET` text,
   `STATUS_TARGET` varchar(25) DEFAULT NULL,
   `TANGGAL_UPLOAD` date DEFAULT NULL,
-  `BATAS_UPLOAD` date DEFAULT NULL,
-  PRIMARY KEY (`ID_TARGET`),
-  KEY `ID_SANTRI` (`ID_SANTRI`),
-  KEY `ID_PENGUJI` (`ID_PENGUJI`),
-  CONSTRAINT `target_ibfk_1` FOREIGN KEY (`ID_SANTRI`) REFERENCES `santri` (`ID_SANTRI`),
-  CONSTRAINT `target_ibfk_2` FOREIGN KEY (`ID_PENGUJI`) REFERENCES `penguji` (`ID_PENGUJI`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+  `BATAS_UPLOAD` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `target` */
+--
+-- Dumping data for table `target`
+--
 
-insert  into `target`(`ID_TARGET`,`ID_SANTRI`,`ID_PENGUJI`,`JUDUL_TARGET`,`DESKRIPSI_TARGET`,`STATUS_TARGET`,`TANGGAL_UPLOAD`,`BATAS_UPLOAD`) values 
-(7,1,1,'Hafalan juz 30','Kalau bisa dikumpulkan hari ini','Belum Tuntas','2020-05-28','2020-06-28'),
-(8,3,4,'Hafalan Jus 1','Surat Al-Baqoroh panjang, semangat ya','Belum Tuntas','2020-05-28','2020-06-28'),
-(9,1,1,'membaca surat al-kahfi','al-kahfi','Sudah Tuntas','2020-05-28','2020-06-02'),
-(10,3,2,'kkkkk','kkkkk','Belum Tuntas','0000-00-00','2020-06-10');
+INSERT INTO `target` (`ID_TARGET`, `ID_SANTRI`, `ID_PENGUJI`, `JUDUL_TARGET`, `DESKRIPSI_TARGET`, `STATUS_TARGET`, `TANGGAL_UPLOAD`, `BATAS_UPLOAD`) VALUES
+(7, 1, 1, 'Hafalan juz 30', 'Kalau bisa dikumpulkan hari ini', 'Belum Tuntas', '2020-05-28', '2020-06-28'),
+(8, 3, 4, 'Hafalan Jus 1', 'Surat Al-Baqoroh panjang, semangat ya', 'Belum Tuntas', '2020-05-28', '2020-06-28'),
+(9, 1, 1, 'membaca surat al-kahfi', 'al-kahfi', 'Sudah Tuntas', '2020-05-28', '2020-06-02'),
+(10, 3, 2, 'kkkkk', 'kkkkk', 'Belum Tuntas', '0000-00-00', '2020-06-10');
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `harian`
+--
+ALTER TABLE `harian`
+  ADD PRIMARY KEY (`ID_HARIAN`),
+  ADD KEY `harian_ibfk_1` (`ID_TARGET`);
+
+--
+-- Indexes for table `komentar`
+--
+ALTER TABLE `komentar`
+  ADD PRIMARY KEY (`ID_KOMEN`),
+  ADD KEY `komentar_ibfk_1` (`ID_PROGRESS`);
+
+--
+-- Indexes for table `penguji`
+--
+ALTER TABLE `penguji`
+  ADD PRIMARY KEY (`ID_PENGUJI`),
+  ADD UNIQUE KEY `EMAIL_PENGUJI` (`EMAIL_PENGUJI`);
+
+--
+-- Indexes for table `progress`
+--
+ALTER TABLE `progress`
+  ADD PRIMARY KEY (`ID_PROGRESS`),
+  ADD KEY `progress_ibfk_1` (`ID_HARIAN`);
+
+--
+-- Indexes for table `santri`
+--
+ALTER TABLE `santri`
+  ADD PRIMARY KEY (`ID_SANTRI`),
+  ADD UNIQUE KEY `EMAIL_SANTRI` (`EMAIL_SANTRI`),
+  ADD KEY `santri_ibfk_1` (`ID_PENGUJI`);
+
+--
+-- Indexes for table `target`
+--
+ALTER TABLE `target`
+  ADD PRIMARY KEY (`ID_TARGET`),
+  ADD KEY `ID_SANTRI` (`ID_SANTRI`),
+  ADD KEY `ID_PENGUJI` (`ID_PENGUJI`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `harian`
+--
+ALTER TABLE `harian`
+  MODIFY `ID_HARIAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `komentar`
+--
+ALTER TABLE `komentar`
+  MODIFY `ID_KOMEN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `penguji`
+--
+ALTER TABLE `penguji`
+  MODIFY `ID_PENGUJI` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `progress`
+--
+ALTER TABLE `progress`
+  MODIFY `ID_PROGRESS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `santri`
+--
+ALTER TABLE `santri`
+  MODIFY `ID_SANTRI` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `target`
+--
+ALTER TABLE `target`
+  MODIFY `ID_TARGET` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `harian`
+--
+ALTER TABLE `harian`
+  ADD CONSTRAINT `harian_ibfk_1` FOREIGN KEY (`ID_TARGET`) REFERENCES `target` (`ID_TARGET`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `komentar`
+--
+ALTER TABLE `komentar`
+  ADD CONSTRAINT `komentar_ibfk_1` FOREIGN KEY (`ID_PROGRESS`) REFERENCES `progress` (`ID_PROGRESS`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `progress`
+--
+ALTER TABLE `progress`
+  ADD CONSTRAINT `progress_ibfk_1` FOREIGN KEY (`ID_HARIAN`) REFERENCES `harian` (`ID_HARIAN`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `santri`
+--
+ALTER TABLE `santri`
+  ADD CONSTRAINT `santri_ibfk_1` FOREIGN KEY (`ID_PENGUJI`) REFERENCES `penguji` (`ID_PENGUJI`);
+
+--
+-- Constraints for table `target`
+--
+ALTER TABLE `target`
+  ADD CONSTRAINT `target_ibfk_1` FOREIGN KEY (`ID_SANTRI`) REFERENCES `santri` (`ID_SANTRI`),
+  ADD CONSTRAINT `target_ibfk_2` FOREIGN KEY (`ID_PENGUJI`) REFERENCES `penguji` (`ID_PENGUJI`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
