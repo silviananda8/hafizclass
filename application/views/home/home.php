@@ -26,7 +26,7 @@
     
     <div class="row text-center pb-5">
         <div class="col-lg-4">
-            <img src="<?= base_url('') ?>assets/img/contoh.jpg" class="rounded img-tutorial mb-3 mt-5" alt="..." data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+            <img src="<?= base_url('') ?>assets/img/contoh.jpg" class="rounded img-tutorial mb-3 mt-5" alt="..." data-toggle="tooltip" data-placement="top" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate ad deleniti eligendi. Eaque, animi dolor alias. Velit quos, inventore assumenda!">
             <h5>Tampilan Awal</h5>
         </div>
         <div class="col-lg-4">

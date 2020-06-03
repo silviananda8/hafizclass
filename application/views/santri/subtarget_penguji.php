@@ -80,12 +80,12 @@
 
             </div>
 
-            <h5>Judul Tugas : <small> <?= $pg->JUDUL_PROGRESS;?></small></h5>
+            <h5><?= $pg->JUDUL_PROGRESS;?></h5>
             <div class="h-divider"></div>
-            <p>Deskripsi Tugas : <?= $pg->DESKRIPSI_PROGRESS;?></p>
-            <audio class="form-control" controls src="<?= base_url() ?>assets/uploads/audio/<?= $pg->AUDIO;?>"></audio>
+            <p><?= $pg->DESKRIPSI_PROGRESS;?></p>
+            <audio class="form-control shadow-sm" controls src="<?= base_url() ?>assets/uploads/audio/<?= $pg->AUDIO;?>"></audio>
             <div class="h-divider mt-4 mb-1 "></div>
-            <p class="text-center"><?= $pg->JENIS_PROGRESS;?></p>
+            <p class="text-center"><i class="fas fa-tag icon-green"></i> <?= $pg->JENIS_PROGRESS;?></p>
             <div class="h-divider mt-2"></div>
             
           </div>
@@ -107,7 +107,7 @@
         </div>
           <?php endif;?>
         <?php endforeach;?>
-
+          <hr>
         <!-- Kirim Komentar -->
           <div class="row">
             <div class="col-2">
@@ -116,12 +116,18 @@
             <div class="col-lg posisi-image" >
                   <div class="form-group pr-2">
                     <form action="<?php echo site_url('c_komen/kirimKomen/'.$kode="penguji2");?>" method="post">
-                      <input type="text" class="form-control" id="isi_komen" name="isi_komen" placeholder="Tulis Komentar">
+                      <div class="row">
+                      <div class="col-10">
+                        <input type="text" class="form-control" id="isi_komen" name="isi_komen" placeholder="Tulis Komentar">
                       <input type="text" id="id_progress" name="id_progress" value="<?= $pg->ID_PROGRESS;?>" hidden>
                       <?php foreach($target as $dt):?>
                         <input type="text" id="id_target" name="id_target" value="<?= $dt->ID_TARGET;?>" hidden>
                       <?php endforeach;?>
-                      <button class="btn btn-success mt-2" type="submit">Kirim Komentar</button>
+                      </div>
+                      <div class="col-2">
+                        <button class="btn btn-success" type="submit">Kirim</button>
+                      </div>
+                    </div>
                     </form>
                   </div>
             </div>
