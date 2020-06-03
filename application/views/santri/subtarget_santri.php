@@ -33,26 +33,17 @@
               <div class="col-3 ">
                 <div class="form-group ">
                     <select class="form-control" id="status_progress" onchange="id_progress(<?= $pg->ID_PROGRESS;?>,this)">
-                    <?php if($pg->STATUS_PROGRESS == 'Belum Dinilai'):?>
+                      <?php if($pg->STATUS_PROGRESS == 'Belum Dinilai'):?>
                       <option value="Belum Dinilai">Belum Dinilai</option>
-                      <option value="Remidi">Remidi</option>
-                      <option value="Lancar">Lancar</option>
-                      <option value="Kurang Lancar">Kurang Lancar</option>
                       <?php elseif($pg->STATUS_PROGRESS == 'Remidi'):?>
                         <option value="Remidi">Remidi</option>
                         <option value="Belum Dinilai">Belum Dinilai</option>
-                        <option value="Lancar">Lancar</option>
-                        <option value="Kurang Lancar">Kurang Lancar</option>
                       <?php elseif($pg->STATUS_PROGRESS == 'Lancar'):?>
                         <option value="Lancar">Lancar</option>
                         <option value="Belum Dinilai">Belum Dinilai</option>
-                        <option value="Remidi">Remidi</option>
-                        <option value="Kurang Lancar">Kurang Lancar</option>
-                      <?php else:?>
+                      <?php else: // jika kurang lancar?> 
                         <option value="Kurang Lancar">Kurang Lancar</option>
                         <option value="Belum Dinilai">Belum Dinilai</option>
-                        <option value="Remidi">Remidi</option>
-                        <option value="Lancar">Lancar</option>
                       <?php endif;?>
                     </select>
                   </div>
